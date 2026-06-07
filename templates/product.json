@@ -1,0 +1,16 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "origin":   { "type": "accordion", "settings": { "title": "Origin" } },
+        "tasting":  { "type": "accordion", "settings": { "title": "Tasting notes" } },
+        "prepare":  { "type": "accordion", "settings": { "title": "How to prepare" } },
+        "shipping": { "type": "accordion", "settings": { "title": "Shipping & returns" } }
+      },
+      "block_order": ["origin", "tasting", "prepare", "shipping"]
+    },
+    "letter": { "type": "mountain-letter" }
+  },
+  "order": ["main", "letter"]
+}

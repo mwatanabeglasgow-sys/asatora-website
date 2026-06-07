@@ -1,0 +1,31 @@
+{%- comment -%} Pillars §11 — three words, no paragraphs {%- endcomment -%}
+<section class="section">
+  <div class="container">
+    <div class="obi-rail" aria-hidden="true">{{ shop.name }} — {{ 'pillars.rail' | t }}</div>
+    <div class="pillars">
+      {%- for block in section.blocks -%}
+        <div class="reveal" {{ block.shopify_attributes }}>
+          <hr class="gold-rule" style="margin-inline:auto">
+          <p class="display">{{ block.settings.word }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Pillars",
+  "max_blocks": 3,
+  "blocks": [
+    { "type": "pillar", "name": "Pillar", "settings": [ { "type": "text", "id": "word", "label": "Word", "default": "Shade-grown" } ] }
+  ],
+  "presets": [
+    { "name": "Pillars", "blocks": [
+      { "type": "pillar", "settings": { "word": "Shade-grown" } },
+      { "type": "pillar", "settings": { "word": "Small-batch" } },
+      { "type": "pillar", "settings": { "word": "Single-origin" } }
+    ] }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,15 @@
+<section class="section">
+  <div class="container stack-lg">
+    <h1 style="text-align:center">{{ 'shop.heading' | t }}</h1>
+    <div class="shop-grid">
+      {%- for collection in collections -%}
+        <a class="card" href="{{ collection.url }}">
+          <span class="card__frame">
+            {%- if collection.featured_image -%}<img src="{{ collection.featured_image | image_url: width: 700 }}" alt="{{ collection.title }}" loading="lazy">{%- else -%}<span class="skeleton" style="display:block;width:100%;height:100%"></span>{%- endif -%}
+          </span>
+          <h3 class="card__name">{{ collection.title }}</h3>
+        </a>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>

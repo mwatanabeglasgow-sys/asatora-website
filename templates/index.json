@@ -1,0 +1,25 @@
+{
+  "sections": {
+    "hero":        { "type": "hero" },
+    "pillars":     { "type": "pillars", "blocks": {
+        "b1": { "type": "pillar", "settings": { "word": "Shade-grown" } },
+        "b2": { "type": "pillar", "settings": { "word": "Small-batch" } },
+        "b3": { "type": "pillar", "settings": { "word": "Single-origin" } }
+      }, "block_order": ["b1", "b2", "b3"] },
+    "feature":     { "type": "product-feature" },
+    "provenance":  { "type": "provenance", "settings": { "mirror": true } },
+    "ritual":      { "type": "ritual", "blocks": {
+        "s1": { "type": "step", "settings": { "label": "Scoop" } },
+        "s2": { "type": "step", "settings": { "label": "Whisk" } },
+        "s3": { "type": "step", "settings": { "label": "Pour" } }
+      }, "block_order": ["s1", "s2", "s3"] },
+    "shop":        { "type": "shop-grid" },
+    "trust":       { "type": "testimonials", "blocks": {
+        "q1": { "type": "quote" },
+        "q2": { "type": "quote" },
+        "q3": { "type": "quote" }
+      }, "block_order": ["q1", "q2", "q3"] },
+    "letter":      { "type": "mountain-letter" }
+  },
+  "order": ["hero", "pillars", "feature", "provenance", "ritual", "shop", "trust", "letter"]
+}

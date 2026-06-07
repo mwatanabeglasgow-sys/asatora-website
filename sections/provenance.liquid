@@ -1,0 +1,40 @@
+{%- comment -%} Provenance §11 — one evocative line + farm image / line-art, max 2 lines, link to Story {%- endcomment -%}
+<section class="section" style="position:relative;overflow:hidden">
+  {%- unless section.settings.image -%}{%- render 'lineart' -%}{%- endunless -%}
+  <div class="container feature {% if section.settings.mirror %}feature--mirror{% endif %}">
+    <div class="feature__media reveal">
+      {%- if section.settings.image != blank -%}
+        <img src="{{ section.settings.image | image_url: width: 1200 }}" alt="{{ section.settings.image.alt | escape | default: 'Shōfuku-en tea garden, Shibushi' }}" width="1200" height="900" loading="lazy">
+      {%- else -%}
+        {%- comment -%} COMP PLACEHOLDER farm/landscape shot {%- endcomment -%}
+        <img src="{{ 'comp-garden.png' | asset_url }}" alt="Tea garden on a misty mountain, Shibushi (comp)" width="1200" height="896" loading="lazy">
+      {%- endif -%}
+    </div>
+    <div class="stack reveal">
+      <p class="overline">{{ 'provenance.overline' | t }}</p>
+      <h2>{{ section.settings.heading | default: 'provenance.heading' | t }}</h2>
+      <p class="lede">{{ section.settings.copy | default: 'provenance.copy' | t }}</p>
+      {%- if section.settings.jp_text != blank -%}
+        <p lang="ja" style="font-family:var(--font-jp-head);color:var(--ink-soft)">{{ section.settings.jp_text }}</p>
+      {%- else -%}
+        <p lang="ja" style="font-family:var(--font-jp-head);color:var(--ink-soft)">{%- comment -%} PLACEHOLDER — exact on-pack JP string (正福茶園 / 鹿児島・志布志) {%- endcomment -%}鹿児島・志布志 正福茶園</p>
+      {%- endif -%}
+      <p><a class="textlink" href="{{ section.settings.link | default: '/pages/story' }}">{{ 'provenance.link' | t }}</a></p>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Provenance",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Farm / landscape image" },
+    { "type": "checkbox", "id": "mirror", "label": "Mirror layout", "default": true },
+    { "type": "text", "id": "heading", "label": "Heading" },
+    { "type": "textarea", "id": "copy", "label": "Copy (≤ 2 lines)" },
+    { "type": "text", "id": "jp_text", "label": "On-pack Japanese provenance text" },
+    { "type": "url", "id": "link", "label": "Link to Story" }
+  ],
+  "presets": [ { "name": "Provenance" } ]
+}
+{% endschema %}

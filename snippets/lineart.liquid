@@ -1,0 +1,16 @@
+{%- comment -%}
+  Faint sepia line-art atmosphere §7 (4–8% opacity, set in base.css).
+  Uses uploaded settings.lineart; else an inline mountain/terrace SVG fallback.
+{%- endcomment -%}
+{%- if settings.lineart != blank -%}
+  <div class="lineart" style="background-image:url('{{ settings.lineart | image_url: width: 1600 }}')" aria-hidden="true"></div>
+{%- else -%}
+  {%- comment -%} PLACEHOLDER — confirm with Adisa: drop mountain/pine/terrace SVG into settings {%- endcomment -%}
+  <div class="lineart" aria-hidden="true" style="display:flex;align-items:flex-end">
+    <svg viewBox="0 0 1200 400" preserveAspectRatio="xMidYMax slice" width="100%" height="100%" fill="none" stroke="{{ settings.lineart_color | default: '#5C4528' }}" stroke-width="1.5">
+      <path d="M0 340 L200 180 L320 260 L460 120 L600 280 L760 90 L900 250 L1040 160 L1200 320"/>
+      <path d="M0 380 L260 240 L420 320 L560 220 L720 340 L880 210 L1040 320 L1200 260" opacity=".6"/>
+      <path d="M520 120 v-30 M540 110 l-20 -20 M540 110 l20 -20" opacity=".5"/>
+    </svg>
+  </div>
+{%- endif -%}

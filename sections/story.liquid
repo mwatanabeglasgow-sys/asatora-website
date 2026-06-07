@@ -1,0 +1,59 @@
+{%- comment -%} Story page §11 — one scrolling editorial: mountain, garden, maker {%- endcomment -%}
+<section class="section" style="text-align:center;position:relative;overflow:hidden">
+  {%- render 'lineart' -%}
+  <div class="container stack" style="position:relative;z-index:2">
+    <p class="overline">{{ 'story.overline' | t }}</p>
+    <h1 class="display">{{ section.settings.heading | default: 'story.heading' | t }}</h1>
+    {%- if section.settings.intro != blank -%}<p class="lede" style="margin:0 auto;max-width:54ch">{{ section.settings.intro }}</p>{%- endif -%}
+  </div>
+</section>
+
+{%- for block in section.blocks -%}
+  {%- if block.type == 'chapter' -%}
+    <section class="section {% cycle '', 'section--paper-deep' %}" {{ block.shopify_attributes }}>
+      <div class="container feature {% cycle 'mirrors': '', 'feature--mirror' %}">
+        <div class="feature__media reveal">
+          {%- if block.settings.image != blank -%}
+            <img src="{{ block.settings.image | image_url: width: 1200 }}" alt="{{ block.settings.image.alt | escape | default: block.settings.heading }}" width="1200" height="1500" loading="lazy">
+          {%- else -%}
+            <div class="skeleton" style="aspect-ratio:4/5"></div>{%- comment -%} PLACEHOLDER story image {%- endcomment -%}
+          {%- endif -%}
+        </div>
+        <div class="stack reveal">
+          <p class="overline">{{ block.settings.tag }}</p>
+          <h2>{{ block.settings.heading }}</h2>
+          <div class="lede">{{ block.settings.body }}</div>
+        </div>
+      </div>
+    </section>
+  {%- endif -%}
+{%- endfor -%}
+
+<section class="section" style="text-align:center">
+  <a class="btn btn--primary" href="{{ routes.all_products_collection_url }}">{{ 'story.cta' | t }}</a>
+</section>
+
+{% schema %}
+{
+  "name": "Story",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading" },
+    { "type": "textarea", "id": "intro", "label": "Intro" }
+  ],
+  "blocks": [
+    { "type": "chapter", "name": "Chapter", "settings": [
+      { "type": "image_picker", "id": "image", "label": "Image" },
+      { "type": "text", "id": "tag", "label": "Tag", "default": "The mountain" },
+      { "type": "text", "id": "heading", "label": "Heading" },
+      { "type": "richtext", "id": "body", "label": "Body" }
+    ] }
+  ],
+  "presets": [
+    { "name": "Story", "blocks": [
+      { "type": "chapter", "settings": { "tag": "The mountain" } },
+      { "type": "chapter", "settings": { "tag": "The garden" } },
+      { "type": "chapter", "settings": { "tag": "The maker" } }
+    ] }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,13 @@
+{%- comment -%}
+  Wax seal §8 — the brand's living mark + trust motif.
+  Uses uploaded asset (settings.wax_seal); else a tasteful matcha fallback.
+  Params: class (extra classes)
+{%- endcomment -%}
+<span class="seal {{ class }}" aria-hidden="true">
+  {%- if settings.wax_seal -%}
+    <img src="{{ settings.wax_seal | image_url: width: 240 }}" alt="" width="120" height="120" loading="lazy">
+  {%- else -%}
+    {%- comment -%} COMP PLACEHOLDER — confirm with Adisa: replace with the real green wax-seal asset {%- endcomment -%}
+    <img src="{{ 'comp-seal.png' | asset_url }}" alt="" width="120" height="120" loading="lazy">
+  {%- endif -%}
+</span>

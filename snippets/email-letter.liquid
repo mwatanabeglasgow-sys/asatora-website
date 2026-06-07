@@ -1,0 +1,23 @@
+{%- comment -%}
+  "The Mountain Letter" email module §11 — reusable, inline (no pop-up §10).
+  Wires to Klaviyo client API via theme settings; fires email_signup event.
+  Param: heading, copy (optional overrides)
+{%- endcomment -%}
+<div class="letter reveal">
+  <p class="overline">{{ 'letter.tag' | t }}</p>
+  <h2 class="display" style="font-size:var(--step-h2)">{{ heading | default: 'letter.heading' | t }}</h2>
+  <p class="lede" style="margin:0 auto;max-width:34ch">{{ copy | default: 'letter.copy' | t }}</p>
+  <form data-letter
+        data-klaviyo-company="{{ settings.klaviyo_company_id | default: 'PLACEHOLDER_KLAVIYO_COMPANY_ID' }}"
+        data-klaviyo-list="{{ settings.klaviyo_list_id | default: 'PLACEHOLDER_KLAVIYO_LIST_ID' }}"
+        data-ok="{{ 'letter.success' | t }}" data-err="{{ 'letter.invalid' | t }}" data-err2="{{ 'letter.error' | t }}"
+        novalidate>
+    <div class="field" style="flex:1">
+      <label class="visually-hidden" for="letter-email">{{ 'letter.placeholder' | t }}</label>
+      <input class="input" type="email" id="letter-email" name="email" required
+             placeholder="{{ 'letter.placeholder' | t }}" autocomplete="email">
+    </div>
+    <button type="submit" class="btn btn--primary"><span class="btn__spinner"></span><span class="btn__label">{{ 'letter.button' | t }}</span></button>
+  </form>
+  <p class="letter__msg" data-letter-msg role="status" aria-live="polite"></p>
+</div>

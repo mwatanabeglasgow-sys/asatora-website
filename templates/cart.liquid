@@ -1,0 +1,35 @@
+{%- comment -%} Cart page — server-rendered fallback (the drawer is primary §9) {%- endcomment -%}
+<section class="section">
+  <div class="container" style="max-width:48rem;padding-top:var(--space-12)">
+    <h1>{{ 'cart.title' | t }}</h1>
+    {%- if cart.item_count == 0 -%}
+      <div class="drawer__empty" style="margin-top:var(--space-12)">
+        <p class="lede">{{ 'cart.empty' | t }}</p>
+        <p style="margin-top:1rem"><a class="textlink" href="{{ routes.all_products_collection_url }}">{{ 'cart.shop' | t }}</a></p>
+      </div>
+    {%- else -%}
+      <form action="{{ routes.cart_url }}" method="post" class="stack-lg" style="margin-top:var(--space-8)">
+        {%- for item in cart.items -%}
+          <div class="line">
+            {%- if item.image -%}<img src="{{ item.image | image_url: width: 160 }}" alt="{{ item.image.alt | escape }}">{%- else -%}<div></div>{%- endif -%}
+            <div>
+              <div class="line__title">{{ item.product.title }}</div>
+              <div class="small" style="color:var(--text-soft)">{{ item.variant.title }}</div>
+              <div class="qty" style="margin-top:.5rem">
+                <a href="{{ routes.cart_change_url }}?line={{ forloop.index }}&quantity={{ item.quantity | minus: 1 }}" aria-label="Decrease">–</a>
+                <input type="text" name="updates[]" value="{{ item.quantity }}" aria-label="Quantity">
+                <a href="{{ routes.cart_change_url }}?line={{ forloop.index }}&quantity={{ item.quantity | plus: 1 }}" aria-label="Increase">+</a>
+              </div>
+            </div>
+            <div style="text-align:right">{{ item.final_line_price | money }}</div>
+          </div>
+        {%- endfor -%}
+        <div class="drawer__sub"><span>{{ 'cart.subtotal' | t }}</span><strong>{{ cart.total_price | money }}</strong></div>
+        <div class="buy__row">
+          <button type="submit" name="update" class="btn btn--secondary">{{ 'cart.update' | t }}</button>
+          <button type="submit" name="checkout" class="btn btn--primary" style="flex:1">{{ 'cart.checkout' | t }}</button>
+        </div>
+      </form>
+    {%- endif -%}
+  </div>
+</section>

@@ -1,0 +1,7 @@
+{
+  "sections": {
+    "story": { "type": "story" },
+    "letter": { "type": "mountain-letter" }
+  },
+  "order": ["story", "letter"]
+}

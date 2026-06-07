@@ -1,0 +1,7 @@
+{
+  "sections": {
+    "main": { "type": "main-collection" },
+    "letter": { "type": "mountain-letter" }
+  },
+  "order": ["main", "letter"]
+}

@@ -1,0 +1,29 @@
+{%- comment -%} Trust / words §11 — 2–3 short testimonials or press marks, kept tiny {%- endcomment -%}
+<section class="section">
+  <div class="container">
+    <div class="quotes">
+      {%- for block in section.blocks -%}
+        <figure class="quote reveal" {{ block.shopify_attributes }}>
+          <p>“{{ block.settings.quote }}”</p>
+          {%- if block.settings.cite != blank -%}<cite>{{ block.settings.cite }}</cite>{%- endif -%}
+        </figure>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Testimonials",
+  "max_blocks": 3,
+  "blocks": [
+    { "type": "quote", "name": "Quote", "settings": [
+      { "type": "textarea", "id": "quote", "label": "Quote", "default": "Quiet, vegetal, and impossibly smooth." },
+      { "type": "text", "id": "cite", "label": "Attribution", "default": "PLACEHOLDER — press / customer" }
+    ] }
+  ],
+  "presets": [
+    { "name": "Testimonials", "blocks": [ { "type": "quote" }, { "type": "quote" }, { "type": "quote" } ] }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,186 @@
+{%- comment -%} PDP §11 — gallery · buy block · subscribe & save · accordions · trust · cross-sell {%- endcomment -%}
+{%- assign p = product -%}
+{%- assign current = p.selected_or_first_available_variant -%}
+
+<section class="section">
+  <div class="container">
+    <div class="pdp">
+      {%- comment -%} ---- Gallery ---- {%- endcomment -%}
+      <div data-gallery>
+        <div class="gallery__main" data-gallery-main>
+          {%- if p.featured_media -%}
+            <img src="{{ p.featured_media | image_url: width: 1200 }}"
+                 srcset="{{ p.featured_media | image_url: width: 700 }} 700w, {{ p.featured_media | image_url: width: 1200 }} 1200w"
+                 sizes="(min-width:900px) 55vw, 92vw"
+                 alt="{{ p.featured_media.alt | escape | default: p.title }}" width="1200" height="1500" fetchpriority="high">
+          {%- else -%}
+            {%- comment -%} COMP PLACEHOLDER product image {%- endcomment -%}
+            <img src="{{ 'comp-tin.png' | asset_url }}" alt="{{ p.title }} (comp)" width="928" height="1152" fetchpriority="high">
+          {%- endif -%}
+        </div>
+        {%- if p.media.size > 1 -%}
+          <div class="gallery__thumbs" role="list">
+            {%- for media in p.media -%}
+              <button type="button" data-thumb data-src="{{ media | image_url: width: 1200 }}"
+                      aria-current="{% if forloop.first %}true{% else %}false{% endif %}" aria-label="View image {{ forloop.index }}">
+                <img src="{{ media | image_url: width: 160 }}" alt="{{ media.alt | escape }}" width="80" height="80" loading="lazy">
+              </button>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+
+      {%- comment -%} ---- Buy block (sticky on desktop) ---- {%- endcomment -%}
+      <div class="buy" data-buy>
+        <p class="overline">{{ 'product.tag' | t }}</p>
+        <h1 style="margin-block:.25rem">{{ p.title }}</h1>
+        <p class="buy__price" data-price>{{ current.price | money }}</p>
+        {%- if p.description != blank -%}
+          <div class="lede" style="max-width:46ch">{{ p.description | strip_html | truncatewords: 30 }}</div>
+        {%- endif -%}
+
+        {%- form 'product', p, data-add-to-cart: '', id: 'pdp-form' -%}
+          {%- comment -%} variant selector (hidden if single) {%- endcomment -%}
+          {%- unless p.has_only_default_variant -%}
+            {%- for option in p.options_with_values -%}
+              <div class="field" style="margin-top:1rem">
+                <label for="opt-{{ forloop.index }}">{{ option.name }}</label>
+                <select class="input" id="opt-{{ forloop.index }}" name="options[{{ option.name | escape }}]">
+                  {%- for value in option.values -%}
+                    <option value="{{ value | escape }}" {% if option.selected_value == value %}selected{% endif %}>{{ value }}</option>
+                  {%- endfor -%}
+                </select>
+              </div>
+            {%- endfor -%}
+          {%- endunless -%}
+          <input type="hidden" name="id" value="{{ current.id }}">
+
+          {%- comment -%} ---- Subscribe & Save §11 (Shopify selling plans) ---- {%- endcomment -%}
+          {%- if current.selling_plan_allocations.size > 0 -%}
+            <div class="purchase-options" role="radiogroup" aria-label="{{ 'product.purchase_type' | t }}">
+              <label class="po">
+                <input type="radio" name="selling_plan" value="" checked>
+                <span>{{ 'product.one_time' | t }}</span>
+              </label>
+              {%- for alloc in current.selling_plan_allocations -%}
+                <label class="po">
+                  <input type="radio" name="selling_plan" value="{{ alloc.selling_plan.id }}">
+                  <span>{{ alloc.selling_plan.name }}</span>
+                  {%- if alloc.compare_at_price > alloc.price -%}
+                    <span class="po__save">{{ 'product.save' | t }} {{ alloc.compare_at_price | minus: alloc.price | times: 100.0 | divided_by: alloc.compare_at_price | round }}%</span>
+                  {%- endif -%}
+                </label>
+              {%- endfor -%}
+            </div>
+          {%- else -%}
+            <p class="small" style="color:var(--text-soft);margin-block:1rem">{%- comment -%} PLACEHOLDER — enable a subscription (selling plan) for repeat-purchase revenue {%- endcomment -%}{{ 'product.subscribe_hint' | t }}</p>
+          {%- endif -%}
+
+          <div class="buy__row" style="margin-top:1rem">
+            <div class="qty">
+              <button type="button" data-qty-down aria-label="{{ 'product.decrease' | t }}">–</button>
+              <input type="text" inputmode="numeric" name="quantity" value="1" data-qty aria-label="{{ 'product.quantity' | t }}">
+              <button type="button" data-qty-up aria-label="{{ 'product.increase' | t }}">+</button>
+            </div>
+            <button type="submit" class="btn btn--primary" style="flex:1" {% unless current.available %}disabled{% endunless %}>
+              <span class="btn__spinner"></span>
+              <span class="btn__label">{% if current.available %}{{ 'product.add_to_cart' | t }}{% else %}{{ 'product.sold_out' | t }}{% endif %}</span>
+            </button>
+          </div>
+          <p class="field__error" data-add-error role="alert" hidden style="display:block;color:var(--rust);margin-top:.5rem"></p>
+        {%- endform -%}
+
+        {%- comment -%} ---- Wax seal + trust line §11 ---- {%- endcomment -%}
+        <div class="trustline" style="margin-top:1.5rem">
+          {%- render 'seal' -%}
+          <span>{%- render 'icon', icon: 'lock' -%} {{ 'trust.secure' | t }}</span>
+          <span>{%- render 'icon', icon: 'ship' -%} {{ 'trust.from_japan' | t }}</span>
+          <span>{%- render 'icon', icon: 'leaf' -%} {{ 'trust.small_batch' | t }}</span>
+        </div>
+
+        {%- comment -%} ---- Accordions §9 (collapsed) ---- {%- endcomment -%}
+        <div style="margin-top:2rem">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'accordion' -%}
+              <details class="accordion" {{ block.shopify_attributes }}>
+                <summary>{{ block.settings.title }}</summary>
+                <div class="accordion__body">{{ block.settings.body }}</div>
+              </details>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+
+    {%- comment -%} ---- Cross-sell "Pairs with" §11 ---- {%- endcomment -%}
+    {%- assign rec = recommendations | default: nil -%}
+    {%- if section.settings.crosssell != blank -%}
+      <div class="stack-lg" style="margin-top:var(--section-y)">
+        <h2 style="text-align:center">{{ 'product.pairs_with' | t }}</h2>
+        <div class="shop-grid">
+          {%- for prod in section.settings.crosssell.products limit: 2 -%}
+            {%- render 'product-card', product: prod -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{%- comment -%} ---- Sticky mobile ATC §10 ---- {%- endcomment -%}
+<div class="sticky-atc" data-sticky-atc aria-hidden="true">
+  <span class="price">{{ current.price | money }}</span>
+  <button type="submit" form="pdp-form" class="btn btn--primary" {% unless current.available %}disabled{% endunless %}>
+    {% if current.available %}{{ 'product.add_to_cart' | t }}{% else %}{{ 'product.sold_out' | t }}{% endif %}
+  </button>
+</div>
+
+{%- comment -%} ---- schema.org Product §14 ---- {%- endcomment -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "Product",
+  "name": {{ p.title | json }},
+  "description": {{ p.description | strip_html | truncate: 300 | json }},
+  "brand": { "@type": "Brand", "name": {{ shop.name | json }} },
+  {% if p.featured_media %}"image": [{{ p.featured_media | image_url: width: 1200 | prepend: "https:" | json }}],{% endif %}
+  "offers": {
+    "@type": "Offer",
+    "price": {{ current.price | divided_by: 100.0 | json }},
+    "priceCurrency": {{ cart.currency.iso_code | json }},
+    "availability": "https://schema.org/{% if current.available %}InStock{% else %}OutOfStock{% endif %}",
+    "url": {{ p.url | prepend: shop.url | json }}
+  }
+}
+</script>
+
+<script>
+  window.AsatoraVariants = [
+    {%- for v in product.variants -%}
+      { "id": {{ v.id }}, "price": {{ v.price }}, "available": {{ v.available }}, "options": {{ v.options | json }} }{%- unless forloop.last -%},{%- endunless -%}
+    {%- endfor -%}
+  ];
+</script>
+
+{% schema %}
+{
+  "name": "Product",
+  "settings": [
+    { "type": "collection", "id": "crosssell", "label": "Pairs with (collection)" }
+  ],
+  "blocks": [
+    { "type": "accordion", "name": "Accordion", "settings": [
+      { "type": "text", "id": "title", "label": "Title", "default": "Origin" },
+      { "type": "richtext", "id": "body", "label": "Body" }
+    ] }
+  ],
+  "presets": [
+    { "name": "Product", "blocks": [
+      { "type": "accordion", "settings": { "title": "Origin" } },
+      { "type": "accordion", "settings": { "title": "Tasting notes" } },
+      { "type": "accordion", "settings": { "title": "How to prepare" } },
+      { "type": "accordion", "settings": { "title": "Shipping & returns" } }
+    ] }
+  ]
+}
+{% endschema %}

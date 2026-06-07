@@ -1,0 +1,90 @@
+{
+  "a11y": {
+    "skip_to_content": "Skip to content",
+    "primary_nav": "Primary",
+    "dismiss": "Dismiss"
+  },
+  "hero": {
+    "overline": "正福茶園 · Shibushi, Kagoshima",
+    "heading": "Single-origin matcha. Shibushi, Kagoshima.",
+    "cta": "Shop the first harvest",
+    "scroll": "Scroll"
+  },
+  "pillars": { "rail": "First harvest" },
+  "feature": {
+    "overline": "The signature tin",
+    "heading": "30g, finished in small batches",
+    "copy": "Shade-grown on a single garden — sealed by hand."
+  },
+  "provenance": {
+    "overline": "Provenance",
+    "heading": "A working tea mountain in Shibushi",
+    "copy": "Grown under shade at 正福茶園, finished in small batches.",
+    "link": "Read the story"
+  },
+  "ritual": {
+    "overline": "The ritual",
+    "heading": "Three quiet steps"
+  },
+  "shop": {
+    "overline": "Shop",
+    "heading": "The collection",
+    "empty": "New harvest arriving soon."
+  },
+  "story": {
+    "overline": "Story",
+    "heading": "The mountain, the garden, the maker",
+    "cta": "Shop the matcha"
+  },
+  "letter": {
+    "tag": "The Mountain Letter",
+    "heading": "A note from the mountain",
+    "copy": "Harvest news, brewing notes, and quiet dispatches — weekly.",
+    "placeholder": "Your email",
+    "button": "Subscribe",
+    "success": "Welcome to the mountain.",
+    "invalid": "Please enter a valid email.",
+    "error": "Something went wrong. Please try again."
+  },
+  "product": {
+    "tag": "Single-origin matcha",
+    "add_to_cart": "Add to cart",
+    "sold_out": "Sold out",
+    "view": "View product",
+    "quantity": "Quantity",
+    "increase": "Increase quantity",
+    "decrease": "Decrease quantity",
+    "purchase_type": "Purchase type",
+    "one_time": "One-time purchase",
+    "save": "Save",
+    "subscribe_hint": "Subscriptions coming soon — matcha is best fresh and often.",
+    "pairs_with": "Pairs with"
+  },
+  "cart": {
+    "title": "Cart",
+    "close": "Close cart",
+    "empty": "Your cart is quiet.",
+    "shop": "Shop matcha",
+    "remove": "Remove",
+    "subtotal": "Subtotal",
+    "taxes_note": "Taxes and shipping calculated at checkout.",
+    "checkout": "Checkout",
+    "update": "Update",
+    "subscribe_upsell": "Subscribe & save — matcha is best fresh and often."
+  },
+  "trust": {
+    "secure": "Secure checkout",
+    "from_japan": "Ships from Japan",
+    "small_batch": "Small-batch"
+  },
+  "footer": {
+    "tagline": "Single-origin matcha from 正福茶園, Shibushi, Kagoshima.",
+    "rights": "All rights reserved.",
+    "from_japan": "Shipped from Japan"
+  },
+  "errors": {
+    "404_heading": "This path is overgrown.",
+    "404_copy": "The page you sought has slipped back into the mountain.",
+    "404_cta": "Return home"
+  }
+}

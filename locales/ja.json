@@ -1,0 +1,90 @@
+{
+  "a11y": {
+    "skip_to_content": "本文へスキップ",
+    "primary_nav": "メインメニュー",
+    "dismiss": "閉じる"
+  },
+  "hero": {
+    "overline": "正福茶園 · 鹿児島・志布志",
+    "heading": "シングルオリジン抹茶。鹿児島・志布志。",
+    "cta": "一番茶を購入する",
+    "scroll": "スクロール"
+  },
+  "pillars": { "rail": "一番茶" },
+  "feature": {
+    "overline": "シグネチャー缶",
+    "heading": "30g、少量仕上げ",
+    "copy": "ひとつの茶園で被覆栽培し、手作業で封をしています。"
+  },
+  "provenance": {
+    "overline": "産地",
+    "heading": "志布志の茶山より",
+    "copy": "正福茶園にて被覆栽培し、少量ずつ仕上げています。",
+    "link": "物語を読む"
+  },
+  "ritual": {
+    "overline": "点て方",
+    "heading": "静かな三つの所作"
+  },
+  "shop": {
+    "overline": "ショップ",
+    "heading": "コレクション",
+    "empty": "新茶は間もなく入荷します。"
+  },
+  "story": {
+    "overline": "物語",
+    "heading": "山、茶園、そして作り手",
+    "cta": "抹茶を購入する"
+  },
+  "letter": {
+    "tag": "ザ・マウンテン・レター",
+    "heading": "山からの便り",
+    "copy": "収穫の知らせ、点て方、静かな便りを毎週お届けします。",
+    "placeholder": "メールアドレス",
+    "button": "登録する",
+    "success": "ようこそ、山の便りへ。",
+    "invalid": "有効なメールアドレスを入力してください。",
+    "error": "エラーが発生しました。もう一度お試しください。"
+  },
+  "product": {
+    "tag": "シングルオリジン抹茶",
+    "add_to_cart": "カートに入れる",
+    "sold_out": "売り切れ",
+    "view": "商品を見る",
+    "quantity": "数量",
+    "increase": "数量を増やす",
+    "decrease": "数量を減らす",
+    "purchase_type": "購入方法",
+    "one_time": "通常購入",
+    "save": "割引",
+    "subscribe_hint": "定期購入は近日開始予定です。抹茶は新鮮なうちに。",
+    "pairs_with": "あわせて"
+  },
+  "cart": {
+    "title": "カート",
+    "close": "カートを閉じる",
+    "empty": "カートは空です。",
+    "shop": "抹茶を見る",
+    "remove": "削除",
+    "subtotal": "小計",
+    "taxes_note": "税・送料はお会計時に計算されます。",
+    "checkout": "購入手続きへ",
+    "update": "更新",
+    "subscribe_upsell": "定期購入でお得に。抹茶は新鮮なうちに。"
+  },
+  "trust": {
+    "secure": "安全なお支払い",
+    "from_japan": "日本より発送",
+    "small_batch": "少量仕上げ"
+  },
+  "footer": {
+    "tagline": "鹿児島・志布志 正福茶園のシングルオリジン抹茶。",
+    "rights": "無断転載を禁じます。",
+    "from_japan": "日本より発送"
+  },
+  "errors": {
+    "404_heading": "この道は草に埋もれています。",
+    "404_copy": "お探しのページは山の奥へと消えてしまいました。",
+    "404_cta": "ホームへ戻る"
+  }
+}

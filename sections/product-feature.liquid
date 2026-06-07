@@ -1,0 +1,59 @@
+{%- comment -%} Product feature §11 — the tin large, editorial/asymmetric, 1 line + price + ATC {%- endcomment -%}
+{%- assign product = section.settings.product -%}
+<section class="section section--paper-deep">
+  <div class="container">
+    <div class="feature {% if section.settings.mirror %}feature--mirror{% endif %}">
+      <div class="feature__media reveal">
+        {%- if product != blank and product.featured_media -%}
+          <img src="{{ product.featured_media | image_url: width: 1200 }}"
+               srcset="{{ product.featured_media | image_url: width: 700 }} 700w, {{ product.featured_media | image_url: width: 1200 }} 1200w"
+               sizes="(min-width:900px) 55vw, 92vw"
+               alt="{{ product.featured_media.alt | escape | default: product.title }}" width="1200" height="1500" loading="lazy">
+        {%- elsif section.settings.image -%}
+          <img src="{{ section.settings.image | image_url: width: 1200 }}" alt="{{ section.settings.image.alt | escape }}" width="1200" height="1500" loading="lazy">
+        {%- else -%}
+          {%- comment -%} COMP PLACEHOLDER tin image {%- endcomment -%}
+          <img src="{{ 'comp-tin.png' | asset_url }}" alt="Asatora signature tin (comp)" width="928" height="1152" loading="lazy">
+        {%- endif -%}
+        <span class="obi-tag">{{ section.settings.obi_text | default: '30g · 朝虎' }}</span>
+      </div>
+
+      <div class="stack reveal">
+        <p class="overline">{{ section.settings.overline | default: 'feature.overline' | t }}</p>
+        <h2>{{ section.settings.heading | default: product.title | default: 'feature.heading' | t }}</h2>
+        <p class="lede">{{ section.settings.copy | default: 'feature.copy' | t }}</p>
+        {%- if product != blank -%}
+          <p class="price">{{ product.price | money }}</p>
+          {%- form 'product', product, data-add-to-cart: '' -%}
+            <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+            <div class="buy__row">
+              <button type="submit" class="btn btn--primary" {% unless product.available %}disabled{% endunless %}>
+                <span class="btn__spinner"></span>
+                <span class="btn__label">{% if product.available %}{{ 'product.add_to_cart' | t }}{% else %}{{ 'product.sold_out' | t }}{% endif %}</span>
+              </button>
+              <a class="btn btn--secondary" href="{{ product.url }}">{{ 'product.view' | t }}</a>
+            </div>
+          {%- endform -%}
+        {%- else -%}
+          <p class="small" style="color:var(--text-soft)">{%- comment -%} PLACEHOLDER — select the signature tin product {%- endcomment -%}Select a product in the theme editor.</p>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product feature",
+  "settings": [
+    { "type": "product", "id": "product", "label": "Product (the signature tin)" },
+    { "type": "image_picker", "id": "image", "label": "Fallback image" },
+    { "type": "checkbox", "id": "mirror", "label": "Mirror layout (image right)", "default": false },
+    { "type": "text", "id": "overline", "label": "Overline" },
+    { "type": "text", "id": "heading", "label": "Heading" },
+    { "type": "textarea", "id": "copy", "label": "Copy (≤ 2 lines)" },
+    { "type": "text", "id": "obi_text", "label": "Obi tag text", "default": "30g · 朝虎" }
+  ],
+  "presets": [ { "name": "Product feature" } ]
+}
+{% endschema %}

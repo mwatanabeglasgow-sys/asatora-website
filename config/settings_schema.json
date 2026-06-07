@@ -1,0 +1,40 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Asatora",
+    "theme_author": "Built for Asatora (朝虎)",
+    "theme_version": "1.0.0",
+    "theme_documentation_url": "https://asatora.example",
+    "theme_support_url": "https://asatora.example"
+  },
+  {
+    "name": "Brand assets",
+    "settings": [
+      { "type": "header", "content": "Logo & marks" },
+      { "type": "image_picker", "id": "logo", "label": "Logo (tiger + mountain roundel / wordmark)", "info": "SVG/PNG. PLACEHOLDER — confirm with Adisa." },
+      { "type": "image_picker", "id": "logo_light", "label": "Logo (light, for dark footer)" },
+      { "type": "image_picker", "id": "wax_seal", "label": "Wax seal (green, transparent PNG/SVG)", "info": "The signature mark. PLACEHOLDER — confirm with Adisa." },
+      { "type": "image_picker", "id": "favicon", "label": "Favicon" },
+      { "type": "image_picker", "id": "share_image", "label": "Social share image (OG)" },
+      { "type": "header", "content": "Atmosphere" },
+      { "type": "image_picker", "id": "lineart", "label": "Line-art motif (mountain / pine / terrace)", "info": "Used faint (4–8%) as dividers & footer backdrop." },
+      { "type": "color", "id": "lineart_color", "label": "Line-art fallback color", "default": "#5C4528" }
+    ]
+  },
+  {
+    "name": "Layout",
+    "settings": [
+      { "type": "checkbox", "id": "header_over_hero", "label": "Header transparent over homepage hero", "default": true }
+    ]
+  },
+  {
+    "name": "Integrations",
+    "settings": [
+      { "type": "header", "content": "Analytics — Plausible" },
+      { "type": "text", "id": "plausible_domain", "label": "Plausible domain", "info": "e.g. asatora.com. Leave blank to disable." },
+      { "type": "header", "content": "Email — Klaviyo (The Mountain Letter)" },
+      { "type": "text", "id": "klaviyo_company_id", "label": "Klaviyo public company ID", "info": "PLACEHOLDER — confirm with Adisa." },
+      { "type": "text", "id": "klaviyo_list_id", "label": "Klaviyo list ID", "info": "The Mountain Letter list. PLACEHOLDER." }
+    ]
+  }
+]

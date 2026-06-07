@@ -1,0 +1,9 @@
+<section class="section" style="text-align:center;min-height:60svh;display:grid;place-items:center">
+  <div class="container stack">
+    <p class="overline">404</p>
+    <h1 class="display">{{ 'errors.404_heading' | t | default: 'This path is overgrown.' }}</h1>
+    <p class="lede" style="margin:0 auto">{{ 'errors.404_copy' | t | default: 'The page you sought has slipped back into the mountain.' }}</p>
+    <p><a class="btn btn--primary" href="{{ routes.root_url }}">{{ 'errors.404_cta' | t | default: 'Return home' }}</a></p>
+  </div>
+</section>
+{% schema %}{ "name": "404", "settings": [] }{% endschema %}

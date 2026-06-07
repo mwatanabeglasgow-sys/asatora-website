@@ -1,0 +1,18 @@
+{%- if section.settings.text != blank -%}
+  <div class="announce" data-announce role="region" aria-label="Announcement">
+    {{ section.settings.text }}
+    {%- if section.settings.dismissible -%}
+      <button type="button" data-announce-close aria-label="{{ 'a11y.dismiss' | t }}">{%- render 'icon', icon: 'close' -%}</button>
+    {%- endif -%}
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Announcement bar",
+  "settings": [
+    { "type": "text", "id": "text", "label": "Text", "default": "First harvest — limited release" },
+    { "type": "checkbox", "id": "dismissible", "label": "Dismissible", "default": true }
+  ]
+}
+{% endschema %}

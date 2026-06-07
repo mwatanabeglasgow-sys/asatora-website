@@ -1,0 +1,15 @@
+{
+  "current": {
+    "header_over_hero": true,
+    "lineart_color": "#5C4528",
+    "plausible_domain": "",
+    "klaviyo_company_id": "",
+    "klaviyo_list_id": ""
+  },
+  "presets": {
+    "Asatora": {
+      "header_over_hero": true,
+      "lineart_color": "#5C4528"
+    }
+  }
+}

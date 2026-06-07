@@ -1,0 +1,10 @@
+# Shopify theme files — not served by Vercel (commerce lives on Shopify).
+# The static marketing site is index.html + assets/.
+sections/
+snippets/
+layout/
+templates/
+locales/
+config/
+preview.html
+.shopify/

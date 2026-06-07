@@ -1,0 +1,86 @@
+/* ============================================================
+   ASATORA — Design Tokens (single source of truth)
+   Color §4 · Type §5 · Space §6 · Motion §8
+   Everything else references these. Do not hardcode values.
+   ============================================================ */
+
+:root {
+  /* --- Color §4 : dominant warm-neutral field + ONE matcha accent --- */
+  --paper:        #F1EBDF; /* page background — warm ivory (dominant field) */
+  --paper-deep:   #E7DDCB; /* alternating section background */
+  --kraft:        #C2A878; /* packaging tan — cards, dividers, accents */
+  --kraft-deep:   #A6885A; /* kraft hover / edges */
+  --ink:          #3A2A1B; /* primary text — deep espresso */
+  --ink-soft:     #5C4528; /* secondary text, illustration brown */
+  --matcha:       #6F7C3C; /* THE accent — primary CTAs, links, the seal */
+  --matcha-deep:  #57622E; /* CTA hover; AA-safe fill behind white text */
+  --gold:         #B7975A; /* wordmark + 0.5–1px hairlines ONLY */
+  --white:        #FBFAF4; /* obi band, cards, surfaces (never pure #FFF) */
+  --rust:         #8B3A2A; /* inline form errors — muted, never alarming red */
+
+  /* surface roles */
+  --bg:           var(--paper);
+  --surface:      var(--white);
+  --text:         var(--ink);
+  --text-soft:    var(--ink-soft);
+  --accent:       var(--matcha);
+  --accent-press: var(--matcha-deep);
+  --hairline:     var(--gold);
+
+  /* --- Type §5 --- */
+  --font-display: "Fraunces", "Cormorant Garamond", Georgia, serif;
+  --font-body:    "Hanken Grotesk", "Helvetica Neue", Helvetica, sans-serif;
+  --font-jp-head: "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  --font-jp-body: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", sans-serif;
+
+  --step-display:  clamp(2.75rem, 6vw, 5rem);    /* hero */
+  --step-h1:       clamp(2.25rem, 4.5vw, 3.5rem);
+  --step-h2:       clamp(1.75rem, 3vw, 2.5rem);
+  --step-h3:       clamp(1.25rem, 2vw, 1.5rem);
+  --step-body-lg:  1.125rem;
+  --step-body:     1rem;
+  --step-small:    0.8125rem;
+  --step-overline: 0.75rem;                       /* uppercase obi tags */
+
+  --leading-tight: 1.1;
+  --leading-body:  1.7;
+  --measure:       68ch;
+  --track-overline: 0.18em;
+
+  /* --- Space §6 --- */
+  --space-1:.25rem; --space-2:.5rem;  --space-3:.75rem; --space-4:1rem;
+  --space-6:1.5rem; --space-8:2rem;   --space-12:3rem;  --space-16:4rem;
+  --space-24:6rem;  --space-32:8rem;
+  --container: 1280px;
+  --gutter: clamp(1.25rem, 5vw, 4rem);
+  --section-y: clamp(5rem, 10vw, 9rem);
+  --radius: 4px;
+
+  /* --- Texture & shadow §7 --- */
+  --grain-opacity: 0.05;
+  --lineart-opacity: 0.06;
+  --shadow-soft: 0 24px 48px -28px rgba(58, 42, 27, 0.20);
+  --shadow-lift: 0 32px 60px -30px rgba(58, 42, 27, 0.28);
+
+  /* --- Motion §8 : slow, soft, no bounce --- */
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 200ms;
+  --dur: 400ms;
+  --dur-slow: 750ms;
+
+  /* layout chrome */
+  --header-h: 4.75rem;
+  --z-header: 50;
+  --z-drawer: 80;
+  --z-overlay: 70;
+}
+
+/* Dark is NOT canonical (§4). Only a restrained warm near-black variant,
+   opt-in via [data-theme="dark"]; we ship light impeccably by default. */
+[data-theme="dark"] {
+  --bg:        #211913;
+  --surface:   #2A2017;
+  --paper-deep:#1B140F;
+  --text:      #EFE6D6;
+  --text-soft: #C9B89B;
+}

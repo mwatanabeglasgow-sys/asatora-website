@@ -1,0 +1,26 @@
+{%- comment -%} Collection listing — clean grid, editorial header {%- endcomment -%}
+<section class="section">
+  <div class="container stack-lg">
+    <div style="text-align:center">
+      <p class="overline">{{ 'shop.overline' | t }}</p>
+      <h1>{{ collection.title }}</h1>
+      {%- if collection.description != blank -%}<p class="lede" style="margin:0 auto;max-width:50ch">{{ collection.description | strip_html | truncatewords: 24 }}</p>{%- endif -%}
+    </div>
+    {%- paginate collection.products by 12 -%}
+      <div class="shop-grid">
+        {%- for product in collection.products -%}
+          {%- render 'product-card', product: product -%}
+        {%- else -%}
+          <p class="lede">{{ 'shop.empty' | t }}</p>
+        {%- endfor -%}
+      </div>
+      {%- if paginate.pages > 1 -%}
+        <nav class="small" style="text-align:center" aria-label="Pagination">{{ paginate | default_pagination }}</nav>
+      {%- endif -%}
+    {%- endpaginate -%}
+  </div>
+</section>
+
+{% schema %}
+{ "name": "Collection", "settings": [] }
+{% endschema %}

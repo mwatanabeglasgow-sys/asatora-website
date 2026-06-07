@@ -1,0 +1,26 @@
+{%- comment -%} Cart drawer §9 — slide-out, focus-trapped, Esc/backdrop close, AJAX {%- endcomment -%}
+<div class="overlay" data-overlay aria-hidden="true"></div>
+<aside class="drawer" data-cart-drawer role="dialog" aria-modal="true" aria-label="{{ 'cart.title' | t }}" aria-hidden="true">
+  <div class="drawer__head">
+    <h2 class="overline">{{ 'cart.title' | t }}</h2>
+    <button type="button" data-cart-close aria-label="{{ 'cart.close' | t }}">{%- render 'icon', icon: 'close' -%}</button>
+  </div>
+
+  <div class="drawer__items" data-cart-items>
+    {%- comment -%} Skeleton until /cart.js paints (no layout shift) {%- endcomment -%}
+    <div class="line"><div class="skeleton" style="aspect-ratio:4/5"></div><div class="stack"><div class="skeleton" style="height:1rem;width:70%"></div><div class="skeleton" style="height:1rem;width:40%"></div></div><div></div></div>
+  </div>
+
+  <div class="drawer__foot" data-cart-foot hidden>
+    <div class="drawer__upsell">{{ 'cart.subscribe_upsell' | t }}</div>
+    <div class="drawer__sub"><span>{{ 'cart.subtotal' | t }}</span><strong data-cart-subtotal></strong></div>
+    <p class="small" style="color:var(--text-soft)">{{ 'cart.taxes_note' | t }}</p>
+    <form action="{{ routes.cart_url }}" method="post">
+      <button type="submit" name="checkout" class="btn btn--primary btn--block">{{ 'cart.checkout' | t }}</button>
+    </form>
+    <div class="trustline" style="justify-content:center">
+      {%- render 'seal' -%}
+      <span>{%- render 'icon', icon: 'lock' -%} {{ 'trust.secure' | t }}</span>
+    </div>
+  </div>
+</aside>

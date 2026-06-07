@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Asatora — Static preview (homepage)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&family=Hanken+Grotesk:wght@400;500;600;700&family=Shippori+Mincho:wght@400;500;600&family=Noto+Sans+JP:wght@400;500&display=swap">
+  <link rel="stylesheet" href="assets/tokens.css">
+  <link rel="stylesheet" href="assets/base.css">
+  <style>
+    /* preview-only: banner so it's never mistaken for the real deployed site */
+    .preview-flag{position:fixed;bottom:1rem;left:1rem;z-index:200;background:var(--ink);color:var(--white);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;padding:.5rem .9rem;border-radius:var(--radius);opacity:.85}
+  </style>
+</head>
+<body class="template-index">
+  <span class="grain" aria-hidden="true"></span>
+  <span class="preview-flag">Static comp preview · not the live Shopify site</span>
+
+  <!-- announcement -->
+  <div class="announce" data-announce>First harvest — limited release
+    <button type="button" data-announce-close aria-label="Dismiss"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+
+  <!-- header -->
+  <header class="header header--over-hero" data-header>
+    <nav class="header__nav" aria-label="Primary"><a href="#shop">Shop</a><a href="#">Story</a><a href="#">Journal</a></nav>
+    <button class="menu-btn" type="button" data-menu-open style="justify-self:start" aria-label="Menu" aria-expanded="false" aria-controls="mobile-nav"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    <a class="header__logo" href="#" aria-label="Asatora home"><span style="font-family:var(--font-jp-head)">朝虎</span><span style="letter-spacing:.18em;font-size:1rem">ASATORA</span></a>
+    <div class="header__actions">
+      <div class="lang-toggle"><button aria-current="true">EN</button><span aria-hidden="true">·</span><button>JA</button></div>
+      <button class="cart-toggle" type="button" data-cart-open aria-label="Cart"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 5h2l1.5 11.5a1.5 1.5 0 0 0 1.5 1.3h8a1.5 1.5 0 0 0 1.5-1.2L20 8H6"/><circle cx="9" cy="21" r="1"/><circle cx="17" cy="21" r="1"/></svg><span class="cart-count" data-cart-count data-count="0">0</span></button>
+    </div>
+  </header>
+  <nav class="mobile-nav" id="mobile-nav" data-mobile-nav hidden><a href="#shop">Shop</a><a href="#">Story</a><a href="#">Journal</a></nav>
+
+  <main id="main">
+    <!-- hero -->
+    <section class="hero" data-load>
+      <div class="hero__bg"><img src="assets/comp-hero.png" alt="Asatora matcha tin on cream" width="1376" height="768" fetchpriority="high"></div>
+      <div class="container hero__inner stack-lg">
+        <p class="overline reveal-hero">正福茶園 · Shibushi, Kagoshima</p>
+        <h1 class="display reveal-hero">Single-origin matcha.<br>Shibushi, Kagoshima.</h1>
+        <div class="reveal-hero"><a class="btn btn--primary" href="#shop">Shop the first harvest</a></div>
+        <div class="hero__seal"><span class="seal"><img src="assets/comp-seal.png" alt="" width="120" height="120"></span></div>
+      </div>
+      <span class="hero__cue" aria-hidden="true">Scroll</span>
+    </section>
+
+    <!-- pillars -->
+    <section class="section">
+      <div class="container">
+        <div class="obi-rail" aria-hidden="true">ASATORA — First harvest</div>
+        <div class="pillars">
+          <div class="reveal"><hr class="gold-rule" style="margin-inline:auto"><p class="display">Shade-grown</p></div>
+          <div class="reveal"><hr class="gold-rule" style="margin-inline:auto"><p class="display">Small-batch</p></div>
+          <div class="reveal"><hr class="gold-rule" style="margin-inline:auto"><p class="display">Single-origin</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- product feature -->
+    <section class="section section--paper-deep">
+      <div class="container">
+        <div class="feature">
+          <div class="feature__media reveal">
+            <img src="assets/comp-tin.png" alt="Asatora signature tin" width="928" height="1152" loading="lazy">
+            <span class="obi-tag">30g · 朝虎</span>
+          </div>
+          <div class="stack reveal">
+            <p class="overline">The signature tin</p>
+            <h2>30g, finished in small batches</h2>
+            <p class="lede">Shade-grown on a single garden — sealed by hand.</p>
+            <p class="price">¥4,800</p>
+            <div class="buy__row">
+              <button class="btn btn--primary"><span class="btn__label">Add to cart</span></button>
+              <a class="btn btn--secondary" href="#">View product</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- provenance -->
+    <section class="section" style="position:relative;overflow:hidden">
+      <div class="container feature feature--mirror">
+        <div class="feature__media reveal"><img src="assets/comp-garden.png" alt="Tea garden on a misty mountain, Shibushi" width="1200" height="896" loading="lazy"></div>
+        <div class="stack reveal">
+          <p class="overline">Provenance</p>
+          <h2>A working tea mountain in Shibushi</h2>
+          <p class="lede">Grown under shade at 正福茶園, finished in small batches.</p>
+          <p lang="ja" style="font-family:var(--font-jp-head);color:var(--ink-soft)">鹿児島・志布志 正福茶園</p>
+          <p><a class="textlink" href="#">Read the story</a></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ritual -->
+    <section class="section section--paper-deep">
+      <div class="container stack-lg">
+        <div style="text-align:center"><p class="overline">The ritual</p><h2>Three quiet steps</h2></div>
+        <div class="ritual">
+          <div class="ritual__step reveal"><p class="num"></p><p class="display" style="font-size:var(--step-h3)">Scoop</p></div>
+          <div class="ritual__step reveal"><p class="num"></p><p class="display" style="font-size:var(--step-h3)">Whisk</p></div>
+          <div class="ritual__step reveal"><p class="num"></p><p class="display" style="font-size:var(--step-h3)">Pour</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- shop grid -->
+    <section class="section" id="shop">
+      <div class="container stack-lg">
+        <div style="text-align:center"><p class="overline">Shop</p><h2>The collection</h2></div>
+        <div class="shop-grid">
+          <article class="card reveal">
+            <a class="card__frame" href="#"><img src="assets/comp-tin.png" alt="Signature Tin · 30g" width="928" height="1152" loading="lazy"></a>
+            <div class="card__row"><h3 class="card__name"><a href="#">Signature Tin · 30g</a></h3><span class="price">¥4,800</span></div>
+            <button class="btn btn--primary btn--block"><span class="btn__label">Add to cart</span></button>
+          </article>
+          <article class="card reveal">
+            <a class="card__frame" href="#"><img src="assets/comp-bag.png" alt="Refill Bag · 30g" width="928" height="1152" loading="lazy"></a>
+            <div class="card__row"><h3 class="card__name"><a href="#">Refill Bag · 30g</a></h3><span class="price">¥4,200</span></div>
+            <button class="btn btn--primary btn--block"><span class="btn__label">Add to cart</span></button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- testimonials -->
+    <section class="section">
+      <div class="container">
+        <div class="quotes">
+          <figure class="quote reveal"><p>“Quiet, vegetal, and impossibly smooth.”</p><cite>Press — placeholder</cite></figure>
+          <figure class="quote reveal"><p>“The cream background made real.”</p><cite>Customer — placeholder</cite></figure>
+          <figure class="quote reveal"><p>“A morning ritual worth keeping.”</p><cite>Customer — placeholder</cite></figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- mountain letter -->
+    <section class="section section--paper-deep">
+      <div class="container">
+        <div class="letter reveal">
+          <p class="overline">The Mountain Letter</p>
+          <h2 class="display" style="font-size:var(--step-h2)">A note from the mountain</h2>
+          <p class="lede" style="margin:0 auto;max-width:34ch">Harvest news, brewing notes, and quiet dispatches — weekly.</p>
+          <form data-letter onsubmit="return false">
+            <div class="field" style="flex:1"><label class="visually-hidden" for="le">Your email</label><input class="input" type="email" id="le" placeholder="Your email"></div>
+            <button type="submit" class="btn btn--primary"><span class="btn__spinner"></span><span class="btn__label">Subscribe</span></button>
+          </form>
+          <p class="letter__msg" data-letter-msg role="status" aria-live="polite"></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <p class="footer__brand">朝虎</p>
+          <p class="small" style="max-width:32ch;margin-top:1rem;opacity:.8">Single-origin matcha from 正福茶園, Shibushi, Kagoshima.</p>
+          <div style="margin-top:1.5rem"><span class="seal"><img src="assets/comp-seal.png" alt="" width="120" height="120"></span></div>
+        </div>
+        <nav aria-label="Explore"><h4>Explore</h4><ul role="list" class="stack" style="--space-4:.5rem"><li><a href="#shop">Shop</a></li><li><a href="#">Story</a></li><li><a href="#">Journal</a></li></ul></nav>
+        <nav aria-label="Care"><h4>Care</h4><ul role="list" class="stack" style="--space-4:.5rem"><li><a href="#">Shipping</a></li><li><a href="#">Contact</a></li><li><a href="#">The Mountain Letter</a></li></ul></nav>
+      </div>
+      <div class="footer__bottom"><span>© 2026 Asatora. All rights reserved.</span><span>Shipped from Japan</span></div>
+    </div>
+  </footer>
+
+  <!-- cart drawer (visual; AJAX endpoints are Shopify-only, so it opens empty here) -->
+  <div class="overlay" data-overlay aria-hidden="true"></div>
+  <aside class="drawer" data-cart-drawer role="dialog" aria-modal="true" aria-label="Cart" aria-hidden="true">
+    <div class="drawer__head"><h2 class="overline">Cart</h2><button type="button" data-cart-close aria-label="Close cart"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+    <div class="drawer__items" data-cart-items><div class="drawer__empty"><p class="lede">Your cart is quiet.</p><p style="margin-top:1rem"><a class="textlink" href="#shop">Shop matcha</a></p></div></div>
+  </aside>
+
+  <!-- preview-only interactions (hero load, reveals, drawer, nav). The real theme uses assets/asatora.js with Shopify AJAX. -->
+  <script>
+    var R = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var hero = document.querySelector("[data-load]");
+    if (hero) { R ? hero.classList.add("is-ready") : requestAnimationFrame(function(){ setTimeout(function(){ hero.classList.add("is-ready"); }, 80); }); }
+    var header = document.querySelector("[data-header]");
+    addEventListener("scroll", function(){ header.classList.toggle("is-condensed", scrollY > 24); }, {passive:true});
+    var els = document.querySelectorAll(".reveal");
+    if (R || !("IntersectionObserver" in window)) els.forEach(function(e){e.classList.add("is-visible");});
+    else { var io = new IntersectionObserver(function(en){en.forEach(function(e){ if(e.isIntersecting){e.target.classList.add("is-visible"); io.unobserve(e.target);} });},{rootMargin:"0px 0px -10% 0px",threshold:.1}); els.forEach(function(e){io.observe(e);}); }
+    function openD(){var d=document.querySelector("[data-cart-drawer]"),o=document.querySelector("[data-overlay]");d.classList.add("is-open");o.classList.add("is-open");document.body.style.overflow="hidden";}
+    function closeD(){var d=document.querySelector("[data-cart-drawer]"),o=document.querySelector("[data-overlay]");d.classList.remove("is-open");o.classList.remove("is-open");document.body.style.overflow="";}
+    document.addEventListener("click",function(e){ if(e.target.closest("[data-cart-open]"))openD(); if(e.target.closest("[data-cart-close]"))closeD(); });
+    document.querySelector("[data-overlay]").addEventListener("click",closeD);
+    addEventListener("keydown",function(e){ if(e.key==="Escape")closeD(); });
+    var mb=document.querySelector("[data-menu-open]"), mn=document.querySelector("[data-mobile-nav]");
+    mb.addEventListener("click",function(){ var open=mn.hasAttribute("hidden"); open?mn.removeAttribute("hidden"):mn.setAttribute("hidden",""); mb.setAttribute("aria-expanded",String(open)); });
+    var ab=document.querySelector("[data-announce-close]"); if(ab)ab.addEventListener("click",function(){this.closest("[data-announce]").remove();});
+    document.querySelector("[data-letter]").addEventListener("submit",function(){ var m=document.querySelector("[data-letter-msg]"); m.className="letter__msg is-ok"; m.textContent="Welcome to the mountain. (preview — no email sent)"; });
+  </script>
+</body>
+</html>
