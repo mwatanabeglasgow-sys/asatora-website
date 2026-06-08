@@ -6,5 +6,6 @@ layout/
 templates/
 locales/
 config/
-preview.html
+docs/
+README.md
 .shopify/
