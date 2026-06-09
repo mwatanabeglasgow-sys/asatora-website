@@ -60,36 +60,6 @@
 @keyframes kenburns-in  { from { transform: scale(1.04) translate(0,0); } to { transform: scale(1.14) translate(-1.5%, -1%); } }
 @keyframes kenburns-out { from { transform: scale(1.14) translate(1.5%, 1%); } to { transform: scale(1.04) translate(0,0); } }
 
-/* centre seam mark — logo + vertical brand columns */
-.fv__seam {
-  position: absolute; top: 50%; left: 50%; z-index: 3;
-  transform: translate(-50%, -50%);
-  display: flex; flex-direction: column; align-items: center; gap: var(--space-4);
-  color: var(--white); text-align: center;
-  mix-blend-mode: normal;
-}
-/* brushwork 朝虎 mark, floating on the seam — soft light halo keeps the dark ink
-   legible across both the darker (video) and lighter (tin) halves of the split */
-.fv__kanji {
-  display: block;
-  width: auto;
-  height: clamp(54px, 8vh, 88px);   /* small centred seam mark, Yamamotoyama-scale */
-  filter:
-    drop-shadow(0 0 16px rgba(251,250,244,.7))
-    drop-shadow(0 0 3px rgba(251,250,244,.9))
-    drop-shadow(0 6px 18px rgba(20,15,11,.35));
-}
-/* vertical brushwork tagline beneath the kanji — slightly smaller, same halo for legibility */
-.fv__copy {
-  display: block;
-  width: auto;
-  height: clamp(76px, 11.5vh, 124px);   /* consistent with the small kanji mark */
-  filter:
-    drop-shadow(0 0 12px rgba(251,250,244,.7))
-    drop-shadow(0 0 2px rgba(251,250,244,.9))
-    drop-shadow(0 4px 14px rgba(20,15,11,.32));
-}
-@media (max-width: 767px) { .fv__copy { display: none; } }  /* keep the stacked mobile hero uncluttered */
 
 /* top-left "Shop" pill — mirrors the reference's Online-Shop chip */
 .fv__pill {
@@ -117,11 +87,8 @@
 @keyframes cue-drop { 0%,100% { transform: scaleY(.4); opacity: .4; } 50% { transform: scaleY(1); opacity: 1; } }
 
 /* FV load choreography */
-.fv__seam, .fv__pill { opacity: 0; transition: opacity var(--dur-fv) var(--ease-fv) .25s; }
-.fv.is-ready .fv__seam, .fv.is-ready .fv__pill { opacity: 1; }
-.fv__kanji, .fv__copy { transform: translateY(1.5rem); transition: transform var(--dur-fv) var(--ease-fv) .35s; }
-.fv.is-ready .fv__kanji { transform: none; }
-.fv.is-ready .fv__copy { transform: none; transition-delay: .55s; }
+.fv__pill { opacity: 0; transition: opacity var(--dur-fv) var(--ease-fv) .25s; }
+.fv.is-ready .fv__pill { opacity: 1; }
 
 @media (max-width: 767px) {
   .fv__panels { grid-template-columns: 1fr; grid-template-rows: 1fr 1fr; }  /* stack panels */
@@ -216,7 +183,7 @@
    ============================================================ */
 @media (prefers-reduced-motion: reduce) {
   .fv__panel img { animation: none !important; transform: scale(1.04); }
-  .fv__seam, .fv__pill, .fv__kanji, .fv__copy { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .fv__pill { opacity: 1 !important; transform: none !important; transition: none !important; }
   .pinned__media img { transition: opacity .001ms; }
   .pinned__media img:first-of-type { opacity: 1; }
   .stagger > * { opacity: 1 !important; transform: none !important; }
