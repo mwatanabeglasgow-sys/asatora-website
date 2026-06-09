@@ -167,8 +167,8 @@ p { max-width: var(--measure); }
 .header__nav a { color: inherit; font-size: var(--step-small); letter-spacing: .04em; text-transform: uppercase; }
 .header__nav a:hover { color: var(--matcha-deep); }
 .header__logo { justify-self: center; display: inline-flex; align-items: center; gap: var(--space-2); font-family: var(--font-display); font-size: var(--step-h3); letter-spacing: .04em; color: var(--ink); }
-.header__logo img { height: 2.6rem; width: auto; mix-blend-mode: multiply; } /* blends cream artwork into the paper/header field */
-@media (min-width: 768px) { .header__logo img { height: 3.1rem; } }
+.header__logo img { height: 1.55rem; width: auto; } /* transparent tiger-stripe wordmark */
+@media (min-width: 768px) { .header__logo img { height: 1.85rem; } }
 .header__actions { justify-self: end; display: inline-flex; align-items: center; gap: var(--space-3); }
 @media (min-width: 768px) { .header__actions { gap: var(--space-4); } }
 .header--over-hero:not(.is-condensed), .header--over-hero:not(.is-condensed) a { color: var(--white); }
@@ -218,10 +218,9 @@ p { max-width: var(--measure); }
 /* Logo over a dark hero: the PNG has an opaque cream bg (can't invert cleanly), so show a white
    text wordmark while transparent-over-hero, and the image logo only on the solid header.
    INTERIM — swap a real light/transparent logo (Higgsfield E) then drop the text fallback. */
-.header__logo-text { display: none; font-family: var(--font-jp-head); font-size: var(--step-h3); letter-spacing: .04em; align-items: baseline; gap: .4rem; }
-.header__logo-text .en { font-family: var(--font-body); font-size: .85rem; letter-spacing: .22em; }
-.header--over-hero:not(.is-condensed) .header__logo img { display: none; }
-.header--over-hero:not(.is-condensed) .header__logo-text { display: inline-flex; color: var(--white); }
+/* over the dark hero the dark tiger-stripe wordmark would vanish — render it white;
+   once the header condenses to its cream bar, show the wordmark in full colour */
+.header--over-hero:not(.is-condensed) .header__wordmark { filter: brightness(0) invert(1); }
 
 /* full-bleed dark band — the Retreat register */
 .band { position: relative; width: 100vw; margin-inline: calc(50% - 50vw); min-height: clamp(64vh, 78svh, 92svh); display: grid; align-items: end; overflow: hidden; }

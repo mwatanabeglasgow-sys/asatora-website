@@ -68,17 +68,17 @@
   color: var(--white); text-align: center;
   mix-blend-mode: normal;
 }
-/* real brand lockup on a quiet cream plate — a gallery-label mark at the seam */
-.fv__lockup {
+/* brushwork 朝虎 mark, floating on the seam — soft light halo keeps the dark ink
+   legible across both the darker (video) and lighter (tin) halves of the split */
+.fv__kanji {
   display: block;
-  width: clamp(150px, 19vw, 240px);
-  padding: var(--space-6) var(--space-6) var(--space-4);
-  background: var(--paper);
-  border: 1px solid var(--gold);
-  border-radius: var(--radius);
-  box-shadow: 0 24px 60px -28px rgba(20,15,11,.7);
+  width: auto;
+  height: clamp(150px, 26vh, 300px);
+  filter:
+    drop-shadow(0 0 16px rgba(251,250,244,.7))
+    drop-shadow(0 0 3px rgba(251,250,244,.9))
+    drop-shadow(0 6px 18px rgba(20,15,11,.35));
 }
-.fv__lockup img { width: 100%; height: auto; }
 .fv__cols { display: flex; gap: var(--space-6); justify-content: center; height: clamp(8rem, 22vh, 14rem); }
 .fv__cols .vtext { font-size: var(--step-small); letter-spacing: .28em; opacity: .92; text-shadow: 0 1px 12px rgba(20,15,11,.6); }
 
@@ -110,8 +110,8 @@
 /* FV load choreography */
 .fv__seam, .fv__pill { opacity: 0; transition: opacity var(--dur-fv) var(--ease-fv) .25s; }
 .fv.is-ready .fv__seam, .fv.is-ready .fv__pill { opacity: 1; }
-.fv__lockup, .fv__cols { transform: translateY(1.5rem); transition: transform var(--dur-fv) var(--ease-fv) .35s; }
-.fv.is-ready .fv__lockup { transform: none; }
+.fv__kanji, .fv__cols { transform: translateY(1.5rem); transition: transform var(--dur-fv) var(--ease-fv) .35s; }
+.fv.is-ready .fv__kanji { transform: none; }
 .fv.is-ready .fv__cols { transform: none; transition-delay: .55s; }
 
 @media (max-width: 767px) {
@@ -208,7 +208,7 @@
    ============================================================ */
 @media (prefers-reduced-motion: reduce) {
   .fv__panel img { animation: none !important; transform: scale(1.04); }
-  .fv__seam, .fv__pill, .fv__lockup, .fv__cols { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .fv__seam, .fv__pill, .fv__kanji, .fv__cols { opacity: 1 !important; transform: none !important; transition: none !important; }
   .pinned__media img { transition: opacity .001ms; }
   .pinned__media img:first-of-type { opacity: 1; }
   .stagger > * { opacity: 1 !important; transform: none !important; }
