@@ -34,26 +34,26 @@
   </div>
 
   <!-- header -->
-  <header class="header header--solid" data-header>
-    <nav class="header__nav" aria-label="Primary"><a href="#shop">Shop</a><a href="#provenance">Story</a><a href="#letter">Journal</a></nav>
+  <header class="header header--over-hero" data-header>
+    <nav class="header__nav" aria-label="Primary"><a href="#shop">Shop</a><a href="#provenance">Story</a><a href="#retreat">Retreat</a></nav>
     <button class="menu-btn" type="button" data-menu-open style="justify-self:start" aria-label="Menu" aria-expanded="false" aria-controls="mobile-nav"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
-    <a class="header__logo" href="#" aria-label="Asatora — Japanese matcha"><img src="assets/logo.png" alt="Asatora" width="200" height="200"></a>
+    <a class="header__logo" href="#" aria-label="Asatora — Japanese matcha"><span class="header__logo-text" aria-hidden="true">朝虎<span class="en">ASATORA</span></span><img src="assets/logo.png" alt="Asatora" width="200" height="200"></a>
     <div class="header__actions">
       <div class="lang-toggle"><button aria-current="true">EN</button><span aria-hidden="true">·</span><button>JA</button></div>
       <button class="cart-toggle" type="button" data-cart-open aria-label="Cart"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 5h2l1.5 11.5a1.5 1.5 0 0 0 1.5 1.3h8a1.5 1.5 0 0 0 1.5-1.2L20 8H6"/><circle cx="9" cy="21" r="1"/><circle cx="17" cy="21" r="1"/></svg><span class="cart-count" data-cart-count data-count="0">0</span></button>
     </div>
   </header>
-  <nav class="mobile-nav" id="mobile-nav" data-mobile-nav hidden><a href="#shop">Shop</a><a href="#provenance">Story</a><a href="#letter">Journal</a><div class="mobile-nav__lang"><button aria-current="true">EN</button><span aria-hidden="true">·</span><button>JA</button></div></nav>
+  <nav class="mobile-nav" id="mobile-nav" data-mobile-nav hidden><a href="#shop">Shop</a><a href="#provenance">Story</a><a href="#retreat">Retreat</a><div class="mobile-nav__lang"><button aria-current="true">EN</button><span aria-hidden="true">·</span><button>JA</button></div></nav>
 
   <main id="main">
-    <!-- hero -->
-    <section class="hero hero--light" data-load>
-      <div class="hero__bg"><img src="assets/hero.jpg" alt="Asatora matcha gift box with tin and refill, on cream" width="2000" height="1493" fetchpriority="high"></div>
+    <!-- hero — cinematic full-bleed, title-card bottom-left (architecture-led) -->
+    <!-- SWAP A: replace comp-garden.png with the real cinematic Shibushi mountain/field hero (Higgsfield) -->
+    <section class="hero hero--cinema" data-load>
+      <div class="hero__bg"><img src="assets/comp-garden.png" alt="Terraced tea fields on a Shibushi mountain at dawn" width="1200" height="896" fetchpriority="high"></div>
       <div class="container hero__inner stack-lg">
         <p class="overline reveal-hero">正福茶園 · Shibushi, Kagoshima</p>
         <h1 class="display reveal-hero">Single-origin matcha.<br>Shibushi, Kagoshima.</h1>
         <div class="reveal-hero"><a class="btn btn--primary" href="#shop">Shop the first harvest</a></div>
-        <div class="hero__seal"><span class="seal"><img src="assets/comp-seal.png" alt="" width="120" height="120"></span></div>
       </div>
       <span class="hero__cue" aria-hidden="true">Scroll</span>
     </section>
@@ -134,6 +134,17 @@
             <button class="btn btn--primary btn--block" data-cart-open><span class="btn__label">Add to cart</span></button>
           </article>
         </div>
+      </div>
+    </section>
+
+    <!-- retreat band — architecture-led dark register (SWAP B/C: drop a cinematic retreat photo as .band__bg img) -->
+    <section class="band band--retreat" id="retreat">
+      <svg class="band__lineart" viewBox="0 0 1200 300" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><path d="M0 250 L220 110 L360 180 L520 70 L680 200 L840 60 L1000 170 L1200 90"/><path d="M0 290 L300 200 L480 260 L640 190 L820 280 L1000 200 L1200 250" opacity=".6"/></svg>
+      <div class="container band__inner stack reveal">
+        <p class="overline">The Retreat</p>
+        <h2 class="display">Eight guests. One mountain.<br>Seven days.</h2>
+        <p class="lede" style="max-width:46ch">A Bushido practice on the Shibushi mountain where the matcha is grown. Opening soon.</p>
+        <a class="btn btn--primary" href="#letter">Join the waitlist</a>
       </div>
     </section>
 

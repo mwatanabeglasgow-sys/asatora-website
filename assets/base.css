@@ -209,6 +209,31 @@ p { max-width: var(--measure); }
 .hero--light .hero__bg::after { background: linear-gradient(180deg, rgba(242,236,227,0) 18%, rgba(242,236,227,.55) 62%, rgba(242,236,227,.9)); }
 .hero--light .hero__inner, .hero--light .overline, .hero--light .display { color: var(--ink); }
 .hero--light .hero__cue { color: var(--ink-soft); opacity: .7; }
+
+/* cinematic hero — full-bleed landscape, white title-card anchored bottom-left (architecture-led) */
+.hero--cinema { align-items: end; }
+.hero--cinema .hero__bg::after { background: linear-gradient(180deg, rgba(33,25,19,.40), rgba(33,25,19,.05) 32%, rgba(33,25,19,.55) 78%, rgba(33,25,19,.88)); }
+.hero--cinema .hero__inner { color: var(--white); padding-block: 0 var(--section-y); }
+.hero--cinema .overline, .hero--cinema .display, .hero--cinema .hero__cue { color: var(--white); }
+/* Logo over a dark hero: the PNG has an opaque cream bg (can't invert cleanly), so show a white
+   text wordmark while transparent-over-hero, and the image logo only on the solid header.
+   INTERIM — swap a real light/transparent logo (Higgsfield E) then drop the text fallback. */
+.header__logo-text { display: none; font-family: var(--font-jp-head); font-size: var(--step-h3); letter-spacing: .04em; align-items: baseline; gap: .4rem; }
+.header__logo-text .en { font-family: var(--font-body); font-size: .85rem; letter-spacing: .22em; }
+.header--over-hero:not(.is-condensed) .header__logo img { display: none; }
+.header--over-hero:not(.is-condensed) .header__logo-text { display: inline-flex; color: var(--white); }
+
+/* full-bleed dark band — the Retreat register */
+.band { position: relative; width: 100vw; margin-inline: calc(50% - 50vw); min-height: clamp(64vh, 78svh, 92svh); display: grid; align-items: end; overflow: hidden; }
+.band--retreat { background: #211913; }
+.band__bg { position: absolute; inset: 0; z-index: 0; }
+.band__bg img { width: 100%; height: 100%; object-fit: cover; }
+.band--retreat::after { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(20,15,11,.25), rgba(20,15,11,.72)); }
+.band__lineart { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: auto; z-index: 1; opacity: .12; stroke: var(--paper); stroke-width: 1.5; fill: none; }
+.band__inner { position: relative; z-index: 2; color: var(--white); padding-block: var(--section-y); }
+.band__inner .overline { color: var(--gold); }
+.band__inner .display { color: var(--white); }
+.band__inner .lede { color: rgba(251,250,244,.82); }
 .hero__cue::after { content: ""; display: block; width: 1px; height: 2.5rem; background: currentColor; margin: var(--space-2) auto 0; }
 
 /* wax seal §8 — the only saturated, ownable mark */
