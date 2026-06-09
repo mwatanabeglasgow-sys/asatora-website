@@ -72,9 +72,18 @@
       <div class="container pinned">
         <div class="pinned__grid">
           <div class="pinned__media" aria-hidden="true">
-            <img data-pin="0" class="is-active" src="assets/tin.jpg" alt="" width="1500" height="1500">
-            <img data-pin="1" src="assets/sku-bag.jpg" alt="" width="970" height="1300">
-            <img data-pin="2" src="assets/provenance.jpg" alt="" width="1120" height="1500">
+            <div class="pinned__slide is-active" data-pin="0">
+              <img class="pinned__img" src="assets/tin.jpg" alt="" width="1500" height="1500">
+              <img class="pinned__img pinned__img--hover" src="assets/tin-hover.jpg" alt="" width="896" height="1200" loading="lazy">
+            </div>
+            <div class="pinned__slide" data-pin="1">
+              <img class="pinned__img" src="assets/sku-bag.jpg" alt="" width="896" height="1200">
+              <img class="pinned__img pinned__img--hover" src="assets/bag-hover.jpg" alt="" width="896" height="1200" loading="lazy">
+            </div>
+            <div class="pinned__slide" data-pin="2">
+              <img class="pinned__img" src="assets/provenance.jpg" alt="" width="1120" height="1500">
+            </div>
+            <span class="pinned__hint" aria-hidden="true">Hover to see it in use</span>
             <p class="vtext">First harvest · 一番茶</p>
           </div>
           <div class="pinned__list">
