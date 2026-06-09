@@ -17,9 +17,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&family=Hanken+Grotesk:wght@400;500;600;700&family=Shippori+Mincho:wght@400;500;600&family=Noto+Sans+JP:wght@400;500&display=swap">
+  <link rel="preload" as="image" href="assets/matcha-grind.jpg">
   <link rel="preload" as="image" href="assets/hero.jpg">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
   <link rel="stylesheet" href="assets/tokens.css">
   <link rel="stylesheet" href="assets/base.css">
+  <link rel="stylesheet" href="assets/editorial.css">
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"Organization","name":"Asatora","url":"/","description":"Single-origin matcha from Shibushi, Kagoshima."}
   </script>
@@ -46,101 +50,133 @@
   <nav class="mobile-nav" id="mobile-nav" data-mobile-nav hidden><a href="#shop">Shop</a><a href="#provenance">Story</a><a href="#retreat">Retreat</a><div class="mobile-nav__lang"><button aria-current="true">EN</button><span aria-hidden="true">·</span><button>JA</button></div></nav>
 
   <main id="main">
-    <!-- hero — cinematic full-bleed, title-card bottom-left (architecture-led) -->
-    <!-- SWAP A: replace comp-garden.png with the real cinematic Shibushi mountain/field hero (Higgsfield) -->
-    <section class="hero hero--cinema" data-load>
-      <div class="hero__bg"><img src="assets/comp-garden.png" alt="Terraced tea fields on a Shibushi mountain at dawn" width="1200" height="896" fetchpriority="high"></div>
-      <div class="container hero__inner stack-lg">
-        <p class="overline reveal-hero">正福茶園 · Shibushi, Kagoshima</p>
-        <h1 class="display reveal-hero">Single-origin matcha.<br>Shibushi, Kagoshima.</h1>
-        <div class="reveal-hero"><a class="btn btn--primary" href="#shop">Shop the first harvest</a></div>
+    <!-- 1 · FIRST VIEW — split Ken-Burns hero, vertical seam mark (reference FV pattern) -->
+    <!-- SWAP A: panel A/B are the cinematic anchor — drop the strongest Shibushi process + place shots here -->
+    <section class="fv" data-fv aria-label="Asatora — single-origin matcha from Shibushi">
+      <div class="fv__panels">
+        <div class="fv__panel fv__panel--a fv__panel--video">
+          <video data-fv-video poster="assets/matcha-grind.jpg" muted loop playsinline preload="metadata" aria-hidden="true" width="1600" height="893">
+            <source src="assets/pre-hero.mp4" type="video/mp4">
+          </video>
+          <img class="fv__video-fallback" src="assets/matcha-grind.jpg" alt="Stone-milled matcha falling in a slow ribbon" width="1600" height="893" fetchpriority="high">
+        </div>
+        <div class="fv__panel fv__panel--b"><img src="assets/hero.jpg" alt="Terraced tea garden on a Shibushi mountain at dawn" width="2000" height="1493" fetchpriority="high"></div>
       </div>
-      <span class="hero__cue" aria-hidden="true">Scroll</span>
+      <a class="fv__pill" href="#shop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 5h2l1.5 11.5a1.5 1.5 0 0 0 1.5 1.3h8a1.5 1.5 0 0 0 1.5-1.2L20 8H6"/><circle cx="9" cy="21" r="1"/><circle cx="17" cy="21" r="1"/></svg>Online Shop</a>
+      <div class="fv__seam">
+        <span class="fv__lockup"><img src="assets/logo-lockup.png" alt="Asatora — Japanese Matcha" width="2048" height="2048"></span>
+        <div class="fv__cols">
+          <p class="vtext" lang="ja">鹿児島・志布志　正福茶園</p>
+          <p class="vtext">Single-origin matcha</p>
+        </div>
+      </div>
+      <span class="fv__cue" aria-hidden="true">Scroll</span>
     </section>
 
-    <!-- pillars -->
-    <section class="section">
-      <div class="container">
-        <div class="obi-rail" aria-hidden="true">ASATORA — First harvest</div>
-        <div class="pillars">
-          <div class="reveal"><hr class="gold-rule" style="margin-inline:auto"><p class="display">Shade-grown</p></div>
-          <div class="reveal"><hr class="gold-rule" style="margin-inline:auto"><p class="display">Small-batch</p></div>
-          <div class="reveal"><hr class="gold-rule" style="margin-inline:auto"><p class="display">Single-origin</p></div>
+    <!-- 2 · PINNED PRODUCTS — image pins while product entries scroll past (reference products pattern) -->
+    <section class="section" id="shop" style="position:relative">
+      <span class="vlabel" aria-hidden="true">茶 — Products</span>
+      <div class="container pinned">
+        <div class="pinned__grid">
+          <div class="pinned__media" aria-hidden="true">
+            <img data-pin="0" class="is-active" src="assets/tin.jpg" alt="" width="1500" height="1500">
+            <img data-pin="1" src="assets/sku-bag.jpg" alt="" width="970" height="1300">
+            <img data-pin="2" src="assets/provenance.jpg" alt="" width="1120" height="1500">
+            <p class="vtext">First harvest · 一番茶</p>
+          </div>
+          <div class="pinned__list">
+            <article class="pinned__item" data-pin-trigger="0">
+              <p class="pinned__num">01</p>
+              <p class="overline" style="margin-top:var(--space-3)">The signature tin</p>
+              <h2 style="margin-top:var(--space-3)">30g, finished in small batches</h2>
+              <p class="lede" style="margin-top:var(--space-4)">Shade-grown on a single garden in Shibushi, stone-milled and sealed by hand under a green wax mark.</p>
+              <p class="price">¥4,800</p>
+              <div class="buy__row">
+                <button class="btn btn--primary" data-cart-open><span class="btn__label">Add to cart</span></button>
+                <a class="btn btn--secondary" href="#letter">View product</a>
+              </div>
+            </article>
+            <article class="pinned__item" data-pin-trigger="1">
+              <p class="pinned__num">02</p>
+              <p class="overline" style="margin-top:var(--space-3)">The refill bag</p>
+              <h2 style="margin-top:var(--space-3)">30g, for the tin you already keep</h2>
+              <p class="lede" style="margin-top:var(--space-4)">The same single-origin matcha in a kraft refill — less to carry home, the ritual unbroken.</p>
+              <p class="price">¥4,200</p>
+              <div class="buy__row">
+                <button class="btn btn--primary" data-cart-open><span class="btn__label">Add to cart</span></button>
+                <a class="btn btn--secondary" href="#letter">View product</a>
+              </div>
+            </article>
+            <article class="pinned__item" data-pin-trigger="2">
+              <p class="pinned__num">03</p>
+              <p class="overline" style="margin-top:var(--space-3)">Provenance</p>
+              <h2 style="margin-top:var(--space-3)">One garden. 正福茶園.</h2>
+              <p class="lede" style="margin-top:var(--space-4)">Every tin is traceable to a single working tea mountain in Shibushi, Kagoshima — never blended, never anonymised.</p>
+              <p style="margin-top:var(--space-4)"><a class="textlink" href="#provenance">Read the story</a></p>
+            </article>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- product feature -->
-    <section class="section section--paper-deep">
-      <div class="container">
-        <div class="feature">
-          <div class="feature__media reveal">
-            <img src="assets/tin.jpg" alt="Asatora signature kraft tin with green wax seal and mountain line-art" width="1400" height="1400" loading="lazy">
-            <span class="obi-tag">30g · 朝虎</span>
-          </div>
-          <div class="stack reveal">
-            <p class="overline">The signature tin</p>
-            <h2>30g, finished in small batches</h2>
-            <p class="lede">Shade-grown on a single garden — sealed by hand.</p>
-            <p class="price">¥4,800</p>
-            <div class="buy__row">
-              <button class="btn btn--primary" data-cart-open><span class="btn__label">Add to cart</span></button>
-              <a class="btn btn--secondary" href="#shop">View product</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- provenance -->
-    <section class="section" id="provenance" style="position:relative;overflow:hidden">
+    <!-- 3 · PROVENANCE — staggered translateY reveal (reference articles pattern) -->
+    <section class="section section--paper-deep" id="provenance" style="position:relative;overflow:hidden">
+      <span class="vlabel" aria-hidden="true">産地 — Provenance</span>
       <div class="container feature feature--mirror">
-        <div class="feature__media reveal"><img src="assets/provenance.jpg" alt="Asatora refill bag showing the terraced tea mountain line-art of Shibushi" width="1120" height="1500" loading="lazy"></div>
-        <div class="stack reveal">
+        <div class="feature__media reveal"><img src="assets/provenance.jpg" alt="Asatora refill bag showing the terraced tea-mountain line-art of Shibushi" width="1120" height="1500" loading="lazy"></div>
+        <div class="stack stagger">
           <p class="overline">Provenance</p>
           <h2>A working tea mountain in Shibushi</h2>
-          <p class="lede">Grown under shade at 正福茶園, finished in small batches.</p>
+          <p class="lede">Grown under shade at 正福茶園, stone-milled in small batches at first light.</p>
           <p lang="ja" style="font-family:var(--font-jp-head);color:var(--ink-soft)">鹿児島・志布志 正福茶園</p>
           <p><a class="textlink" href="#letter">Read the story</a></p>
         </div>
       </div>
     </section>
 
-    <!-- ritual -->
-    <section class="section section--paper-deep">
-      <div class="container stack-lg">
-        <div style="text-align:center"><p class="overline">The ritual</p><h2>Three quiet steps</h2></div>
-        <div class="ritual">
-          <div class="ritual__step reveal"><p class="num"></p><p class="display" style="font-size:var(--step-h3)">Scoop</p></div>
-          <div class="ritual__step reveal"><p class="num"></p><p class="display" style="font-size:var(--step-h3)">Whisk</p></div>
-          <div class="ritual__step reveal"><p class="num"></p><p class="display" style="font-size:var(--step-h3)">Pour</p></div>
+    <!-- 4 · FIELD REPORTS — Swiper carousel of editorial cards (reference slider pattern) -->
+    <section class="section reports" id="journal">
+      <div class="container">
+        <div class="stagger" style="display:flex;align-items:end;justify-content:space-between;gap:var(--space-8);flex-wrap:wrap">
+          <div><p class="overline">From the mountain</p><h2 style="margin-top:var(--space-3)">Field reports</h2></div>
+          <a class="textlink" href="#letter">All dispatches</a>
+        </div>
+        <div class="swiper" data-reports style="margin-top:var(--space-12)">
+          <div class="swiper-wrapper">
+            <article class="swiper-slide report-card">
+              <div class="report-card__frame"><img src="assets/training.jpg" alt="Dawn practice on the keiko-ba" width="1600" height="893" loading="lazy"><p class="vtext report-card__title">The first hour is silent</p></div>
+              <div class="report-card__meta"><span>No. 01 · Practice</span><span>志布志</span></div>
+            </article>
+            <article class="swiper-slide report-card">
+              <div class="report-card__frame"><img src="assets/matcha-grind.jpg" alt="Stone mill turning at 5:30am" width="1600" height="893" loading="lazy"><p class="vtext report-card__title">Five stone mills at dawn</p></div>
+              <div class="report-card__meta"><span>No. 02 · Craft</span><span>正福茶園</span></div>
+            </article>
+            <article class="swiper-slide report-card">
+              <div class="report-card__frame"><img src="assets/dining.jpg" alt="The long table set for eight" width="1600" height="893" loading="lazy"><p class="vtext report-card__title">Eight at the long table</p></div>
+              <div class="report-card__meta"><span>No. 03 · The table</span><span>八名</span></div>
+            </article>
+            <article class="swiper-slide report-card">
+              <div class="report-card__frame"><img src="assets/solo-unit.jpg" alt="A single guest container at dusk" width="1600" height="893" loading="lazy"><p class="vtext report-card__title">One room. One mountain.</p></div>
+              <div class="report-card__meta"><span>No. 04 · The retreat</span><span>朝虎</span></div>
+            </article>
+          </div>
+        </div>
+        <div class="reports__foot">
+          <p class="small" style="color:var(--text-soft);max-width:38ch">Quiet dispatches from a working tea mountain in Kagoshima.</p>
+          <div class="swiper-nav">
+            <button type="button" data-reports-prev aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 5l-7 7 7 7"/></svg></button>
+            <button type="button" data-reports-next aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 5l7 7-7 7"/></svg></button>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- shop grid -->
-    <section class="section" id="shop">
-      <div class="container stack-lg">
-        <div style="text-align:center"><p class="overline">Shop</p><h2>The collection</h2></div>
-        <div class="shop-grid">
-          <article class="card reveal">
-            <a class="card__frame" href="#shop"><img src="assets/sku-tin.jpg" alt="Signature Tin, 30g" width="1300" height="1300" loading="lazy"></a>
-            <div class="card__row"><h3 class="card__name"><a href="#shop">Signature Tin · 30g</a></h3><span class="price">¥4,800</span></div>
-            <button class="btn btn--primary btn--block" data-cart-open><span class="btn__label">Add to cart</span></button>
-          </article>
-          <article class="card reveal">
-            <a class="card__frame" href="#shop"><img src="assets/sku-bag.jpg" alt="Refill Bag, 30g" width="970" height="1300" loading="lazy"></a>
-            <div class="card__row"><h3 class="card__name"><a href="#shop">Refill Bag · 30g</a></h3><span class="price">¥4,200</span></div>
-            <button class="btn btn--primary btn--block" data-cart-open><span class="btn__label">Add to cart</span></button>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- retreat band — architecture-led dark register (SWAP B/C: drop a cinematic retreat photo as .band__bg img) -->
+    <!-- 5 · RETREAT BAND — full-bleed dark register (architecture-led) -->
+    <!-- SWAP B/C: drop a cinematic retreat photo as the .band__bg img -->
     <section class="band band--retreat" id="retreat">
+      <div class="band__bg"><img src="assets/solo-unit.jpg" alt="A single guest container glowing at dusk on the mountain" width="1600" height="893" loading="lazy"></div>
       <svg class="band__lineart" viewBox="0 0 1200 300" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><path d="M0 250 L220 110 L360 180 L520 70 L680 200 L840 60 L1000 170 L1200 90"/><path d="M0 290 L300 200 L480 260 L640 190 L820 280 L1000 200 L1200 250" opacity=".6"/></svg>
-      <div class="container band__inner stack reveal">
+      <div class="container band__inner stack stagger">
         <p class="overline">The Retreat</p>
         <h2 class="display">Eight guests. One mountain.<br>Seven days.</h2>
         <p class="lede" style="max-width:46ch">A Bushido practice on the Shibushi mountain where the matcha is grown. Opening soon.</p>
@@ -148,18 +184,19 @@
       </div>
     </section>
 
-    <!-- testimonials -->
+    <!-- 6 · NEWS — auto-fit grid (reference announce section) -->
     <section class="section">
       <div class="container">
-        <div class="quotes">
-          <figure class="quote reveal"><p>“Quiet, vegetal, and impossibly smooth.”</p><cite>Press — placeholder</cite></figure>
-          <figure class="quote reveal"><p>“The cream background made real.”</p><cite>Customer — placeholder</cite></figure>
-          <figure class="quote reveal"><p>“A morning ritual worth keeping.”</p><cite>Customer — placeholder</cite></figure>
+        <div class="stagger" style="margin-bottom:var(--space-12)"><p class="overline">News</p><h2 style="margin-top:var(--space-3)">Notes &amp; releases</h2></div>
+        <div class="news-grid">
+          <a class="news-item" href="#shop"><time datetime="2026-06">2026 · 06</time><h3>First harvest — limited release</h3><p class="small" style="color:var(--text-soft)">The first single-origin tins from 正福茶園 are sealed and numbered.</p></a>
+          <a class="news-item" href="#retreat"><time datetime="2026-05">2026 · 05</time><h3>Retreat waitlist now open</h3><p class="small" style="color:var(--text-soft)">Eight guests, seven days, on the mountain where the matcha is grown.</p></a>
+          <a class="news-item" href="#letter"><time datetime="2026-04">2026 · 04</time><h3>The Mountain Letter begins</h3><p class="small" style="color:var(--text-soft)">Harvest news and brewing notes, written from Shibushi.</p></a>
         </div>
       </div>
     </section>
 
-    <!-- mountain letter -->
+    <!-- 7 · mountain letter -->
     <section class="section section--paper-deep" id="letter">
       <div class="container">
         <div class="letter reveal">
@@ -199,15 +236,56 @@
     <div class="drawer__items" data-cart-items><div class="drawer__empty"><p class="lede">Checkout opens with the store launch.</p><p class="small" style="color:var(--text-soft);margin-top:.5rem">This is the design preview — purchasing runs on the Shopify theme.</p><p style="margin-top:1rem"><a class="textlink" href="#shop">Back to shop</a></p></div></div>
   </aside>
 
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.42/dist/lenis.min.js" defer></script>
   <script>
     var R = matchMedia("(prefers-reduced-motion: reduce)").matches;
-    var hero = document.querySelector("[data-load]");
-    if (hero) { R ? hero.classList.add("is-ready") : requestAnimationFrame(function(){ setTimeout(function(){ hero.classList.add("is-ready"); }, 80); }); }
+
+    // FV split-hero load choreography (Ken-Burns + seam reveal)
+    var fv = document.querySelector("[data-fv]");
+    if (fv) { R ? fv.classList.add("is-ready") : requestAnimationFrame(function(){ setTimeout(function(){ fv.classList.add("is-ready"); }, 80); }); }
+
+    // hero video panel — autoplay only when motion is allowed (else poster/fallback shows)
+    var fvVid = document.querySelector("[data-fv-video]");
+    if (fvVid && !R) { var p = fvVid.play(); if (p && p.catch) p.catch(function(){}); }
+
+    // header condense on scroll
     var header = document.querySelector("[data-header]");
     addEventListener("scroll", function(){ header.classList.toggle("is-condensed", scrollY > 24); }, {passive:true});
-    var els = document.querySelectorAll(".reveal");
+
+    // generic + staggered scroll reveals
+    var els = document.querySelectorAll(".reveal, .stagger");
     if (R || !("IntersectionObserver" in window)) els.forEach(function(e){e.classList.add("is-visible");});
     else { var io = new IntersectionObserver(function(en){en.forEach(function(e){ if(e.isIntersecting){e.target.classList.add("is-visible"); io.unobserve(e.target);} });},{rootMargin:"0px 0px -10% 0px",threshold:.1}); els.forEach(function(e){io.observe(e);}); }
+
+    // pinned-image swap — active product entry drives the sticky image
+    var pins = document.querySelectorAll("[data-pin]");
+    var triggers = document.querySelectorAll("[data-pin-trigger]");
+    if (pins.length && triggers.length && "IntersectionObserver" in window) {
+      var setPin = function(i){ pins.forEach(function(p){ p.classList.toggle("is-active", p.getAttribute("data-pin") === String(i)); }); };
+      var pio = new IntersectionObserver(function(en){ en.forEach(function(e){ if (e.isIntersecting) setPin(e.target.getAttribute("data-pin-trigger")); }); }, {rootMargin:"-45% 0px -45% 0px", threshold:0});
+      triggers.forEach(function(t){ pio.observe(t); });
+    }
+
+    // Lenis smooth scroll (skipped under reduced-motion)
+    addEventListener("load", function(){
+      if (!R && window.Lenis) {
+        var lenis = new Lenis({ duration: 1.1, easing: function(t){ return Math.min(1, 1.001 - Math.pow(2, -10 * t)); } });
+        function raf(t){ lenis.raf(t); requestAnimationFrame(raf); } requestAnimationFrame(raf);
+        document.querySelectorAll('a[href^="#"]').forEach(function(a){ a.addEventListener("click", function(e){ var id=a.getAttribute("href"); if(id.length>1){ var el=document.querySelector(id); if(el){ e.preventDefault(); lenis.scrollTo(el, {offset:-80}); } } }); });
+      }
+      // Field-reports carousel
+      if (window.Swiper) {
+        var sw = new Swiper("[data-reports]", {
+          slidesPerView: 1.15, spaceBetween: 16, grabCursor: true,
+          speed: 700, breakpoints: { 640:{slidesPerView:2.1,spaceBetween:20}, 1024:{slidesPerView:3.1,spaceBetween:24} }
+        });
+        var pv=document.querySelector("[data-reports-prev]"), nx=document.querySelector("[data-reports-next]");
+        function syncNav(){ if(pv)pv.disabled=sw.isBeginning; if(nx)nx.disabled=sw.isEnd; }
+        if(pv)pv.addEventListener("click",function(){sw.slidePrev();}); if(nx)nx.addEventListener("click",function(){sw.slideNext();});
+        sw.on("slideChange",syncNav); syncNav();
+      }
+    });
     function openD(){var d=document.querySelector("[data-cart-drawer]"),o=document.querySelector("[data-overlay]");d.classList.add("is-open");o.classList.add("is-open");document.body.style.overflow="hidden";}
     function closeD(){var d=document.querySelector("[data-cart-drawer]"),o=document.querySelector("[data-overlay]");d.classList.remove("is-open");o.classList.remove("is-open");document.body.style.overflow="";}
     document.addEventListener("click",function(e){ if(e.target.closest("[data-cart-open]")){e.preventDefault();openD();} if(e.target.closest("[data-cart-close]"))closeD(); });

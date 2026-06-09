@@ -1,0 +1,217 @@
+/* ============================================================
+   ASATORA — Editorial layer (Yamamotoyama-pattern architecture)
+   Re-implements the reference's composition + motion language in
+   Asatora tokens: split Ken-Burns hero, sticky pinned-image
+   products, staggered reveals, vertical-text labels, carousel.
+   References tokens.css. No values hardcoded that tokens cover.
+   ============================================================ */
+
+:root {
+  /* the reference's signature easing — slow, weighted, no bounce */
+  --ease-fv: cubic-bezier(0.21, 0.51, 0.51, 1);
+  --dur-fv: 1s;
+  --dur-kenburns: 18s;
+}
+
+/* vertical Japanese text — the reference's core typographic device */
+.vtext {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  text-align: start;
+  font-family: var(--font-jp-head);
+  letter-spacing: .12em;
+}
+
+/* ============================================================
+   1 · FIRST VIEW — full-bleed split hero with Ken-Burns panels
+   ============================================================ */
+.fv {
+  position: relative;
+  width: 100vw;
+  margin-inline: calc(50% - 50vw);
+  height: 100svh;
+  overflow: hidden;
+  background: var(--ink);
+}
+.fv__panels {
+  position: absolute; inset: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;   /* 50/50 split, like the reference FV */
+}
+.fv__panel { position: relative; overflow: hidden; }
+.fv__panel::after {        /* seam-side vignette so the centre mark reads */
+  content: ""; position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(180deg, rgba(20,15,11,.35), rgba(20,15,11,.10) 38%, rgba(20,15,11,.45));
+}
+.fv__panel img, .fv__panel video {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%; object-fit: cover;
+  transform: scale(1.04);
+  will-change: transform;
+}
+/* video panel (own touch): live footage replaces the Ken-Burns still.
+   The <video> sits over its poster/fallback img; fallback shows under reduced-motion or no-autoplay. */
+.fv__panel--video video { z-index: 1; transform: scale(1.02); animation: none !important; }
+.fv__panel--video .fv__video-fallback { z-index: 0; }
+@media (prefers-reduced-motion: reduce) { .fv__panel--video video { display: none; } }
+/* Ken-Burns: slow, infinite, each panel drifts the opposite way */
+.fv.is-ready .fv__panel--a img { animation: kenburns-in  var(--dur-kenburns) var(--ease-fv) infinite alternate; }
+.fv.is-ready .fv__panel--b img { animation: kenburns-out var(--dur-kenburns) var(--ease-fv) infinite alternate; }
+@keyframes kenburns-in  { from { transform: scale(1.04) translate(0,0); } to { transform: scale(1.14) translate(-1.5%, -1%); } }
+@keyframes kenburns-out { from { transform: scale(1.14) translate(1.5%, 1%); } to { transform: scale(1.04) translate(0,0); } }
+
+/* centre seam mark — logo + vertical brand columns */
+.fv__seam {
+  position: absolute; top: 50%; left: 50%; z-index: 3;
+  transform: translate(-50%, -50%);
+  display: flex; flex-direction: column; align-items: center; gap: var(--space-6);
+  color: var(--white); text-align: center;
+  mix-blend-mode: normal;
+}
+/* real brand lockup on a quiet cream plate — a gallery-label mark at the seam */
+.fv__lockup {
+  display: block;
+  width: clamp(150px, 19vw, 240px);
+  padding: var(--space-6) var(--space-6) var(--space-4);
+  background: var(--paper);
+  border: 1px solid var(--gold);
+  border-radius: var(--radius);
+  box-shadow: 0 24px 60px -28px rgba(20,15,11,.7);
+}
+.fv__lockup img { width: 100%; height: auto; }
+.fv__cols { display: flex; gap: var(--space-6); justify-content: center; height: clamp(8rem, 22vh, 14rem); }
+.fv__cols .vtext { font-size: var(--step-small); letter-spacing: .28em; opacity: .92; text-shadow: 0 1px 12px rgba(20,15,11,.6); }
+
+/* top-left "Shop" pill — mirrors the reference's Online-Shop chip */
+.fv__pill {
+  position: absolute; top: calc(var(--announce-h, 0px) + var(--header-h) + var(--space-2)); left: var(--gutter);
+  z-index: 4;
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid rgba(251,250,244,.45); border-radius: 100px;
+  color: var(--white); font-size: var(--step-overline);
+  letter-spacing: var(--track-overline); text-transform: uppercase;
+  background: rgba(20,15,11,.18); backdrop-filter: blur(6px);
+  transition: background-color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+.fv__pill:hover { color: var(--white); background: rgba(20,15,11,.4); border-color: var(--white); }
+.fv__pill svg { width: 14px; height: 14px; }
+
+/* scroll cue, centred bottom */
+.fv__cue {
+  position: absolute; bottom: var(--space-8); left: 50%; transform: translateX(-50%); z-index: 4;
+  color: var(--white); opacity: .85; font-size: var(--step-overline);
+  letter-spacing: .3em; text-transform: uppercase;
+}
+.fv__cue::after { content: ""; display: block; width: 1px; height: 2.5rem; margin: var(--space-2) auto 0; background: currentColor;
+  animation: cue-drop 2.4s var(--ease) infinite; transform-origin: top; }
+@keyframes cue-drop { 0%,100% { transform: scaleY(.4); opacity: .4; } 50% { transform: scaleY(1); opacity: 1; } }
+
+/* FV load choreography */
+.fv__seam, .fv__pill { opacity: 0; transition: opacity var(--dur-fv) var(--ease-fv) .25s; }
+.fv.is-ready .fv__seam, .fv.is-ready .fv__pill { opacity: 1; }
+.fv__lockup, .fv__cols { transform: translateY(1.5rem); transition: transform var(--dur-fv) var(--ease-fv) .35s; }
+.fv.is-ready .fv__lockup { transform: none; }
+.fv.is-ready .fv__cols { transform: none; transition-delay: .55s; }
+
+@media (max-width: 767px) {
+  .fv__panels { grid-template-columns: 1fr; grid-template-rows: 1fr 1fr; }  /* stack panels */
+  .fv__cols { display: none; }
+}
+
+/* ============================================================
+   2 · PINNED PRODUCTS — sticky image, scrolling product entries
+   (reference: .products_img position:sticky while list scrolls)
+   ============================================================ */
+.pinned { position: relative; }
+.pinned__grid { display: grid; gap: var(--space-12); }
+@media (min-width: 900px) {
+  .pinned__grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; gap: var(--space-24); }
+}
+.pinned__media {
+  position: relative; align-self: start;
+  border-radius: var(--radius); overflow: hidden; background: var(--paper-deep);
+  aspect-ratio: 4/5; box-shadow: var(--shadow-soft);
+}
+@media (min-width: 900px) {
+  .pinned__media { position: sticky; top: calc(var(--header-h) + var(--space-12)); height: 78vh; aspect-ratio: auto; }
+}
+.pinned__media img {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  opacity: 0; transform: scale(1.04);
+  transition: opacity var(--dur-slow) var(--ease-fv), transform 6s var(--ease-fv);
+}
+.pinned__media img.is-active { opacity: 1; transform: scale(1); }
+.pinned__media .vtext {       /* vertical caption over the pinned image */
+  position: absolute; top: var(--space-6); right: var(--space-4); z-index: 2;
+  color: var(--white); font-size: var(--step-overline); letter-spacing: .3em;
+  text-transform: uppercase; text-shadow: 0 1px 12px rgba(20,15,11,.6);
+}
+.pinned__list { display: flex; flex-direction: column; }
+.pinned__item { padding-block: clamp(var(--space-16), 14vh, var(--space-32)); border-top: 1px solid var(--gold); }
+.pinned__item:first-child { border-top: 0; padding-top: 0; }
+.pinned__item .price { margin-top: var(--space-4); }
+.pinned__item .buy__row { margin-top: var(--space-6); }
+.pinned__num { font-family: var(--font-display); font-size: var(--step-h3); color: var(--kraft-deep); }
+
+/* ============================================================
+   3 · STAGGERED REVEAL — sequential translateY, like the reference
+   ============================================================ */
+.stagger > * { opacity: 0; transform: translateY(20%); }
+.stagger.is-visible > * { opacity: 1; transform: none; transition: opacity var(--dur-fv) var(--ease-fv), transform var(--dur-fv) var(--ease-fv); }
+.stagger.is-visible > *:nth-child(1) { transition-delay: 0ms; }
+.stagger.is-visible > *:nth-child(2) { transition-delay: 180ms; }
+.stagger.is-visible > *:nth-child(3) { transition-delay: 360ms; }
+.stagger.is-visible > *:nth-child(4) { transition-delay: 540ms; }
+.stagger.is-visible > *:nth-child(5) { transition-delay: 720ms; }
+
+/* section eyebrow with vertical label down the left margin */
+.vlabel {
+  position: absolute; left: var(--gutter); top: var(--section-y); z-index: 3;
+  display: none;
+  color: var(--ink-soft); font-size: var(--step-overline);
+  letter-spacing: .32em; text-transform: uppercase;
+  padding-top: var(--space-6); border-top: 1px solid var(--gold);
+}
+@media (min-width: 1100px) { .vlabel { display: block; } }
+
+/* ============================================================
+   4 · FIELD REPORTS — Swiper carousel of editorial cards
+   ============================================================ */
+.reports { overflow: hidden; }
+.reports .swiper { overflow: visible; }
+.report-card { position: relative; }
+.report-card__frame { position: relative; overflow: hidden; border-radius: var(--radius); aspect-ratio: 16/10; background: var(--paper-deep); }
+.report-card__frame img { width: 100%; height: 100%; object-fit: cover; transition: transform var(--dur-kenburns) var(--ease-fv); }
+.report-card:hover .report-card__frame img { transform: scale(1.06); }
+.report-card__frame::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 45%, rgba(20,15,11,.6)); }
+.report-card__title { position: absolute; left: var(--space-4); bottom: var(--space-4); z-index: 2; color: var(--white); height: 7rem; font-size: var(--step-h3); }
+.report-card__meta { margin-top: var(--space-3); display: flex; justify-content: space-between; color: var(--text-soft); font-size: var(--step-small); letter-spacing: .08em; text-transform: uppercase; }
+.reports__foot { display: flex; align-items: center; justify-content: space-between; gap: var(--space-6); margin-top: var(--space-12); }
+.swiper-nav { display: inline-flex; gap: var(--space-3); }
+.swiper-nav button { width: 48px; height: 48px; border: 1px solid var(--kraft-deep); border-radius: 100px; color: var(--ink); display: inline-flex; align-items: center; justify-content: center; transition: border-color var(--dur) var(--ease), background-color var(--dur) var(--ease); }
+.swiper-nav button:hover { border-color: var(--ink); background: var(--white); }
+.swiper-nav button[disabled] { opacity: .3; cursor: not-allowed; }
+.swiper-nav svg { width: 18px; height: 18px; }
+
+/* ============================================================
+   5 · NEWS GRID — auto-fit columns (reference announce section)
+   ============================================================ */
+.news-grid { display: grid; gap: var(--space-8); grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); }
+.news-item { display: grid; gap: var(--space-3); padding-top: var(--space-6); border-top: 1px solid var(--gold); }
+.news-item time { font-size: var(--step-overline); letter-spacing: .2em; text-transform: uppercase; color: var(--kraft-deep); }
+.news-item h3 { font-size: var(--step-h3); }
+.news-item:hover h3 { color: var(--matcha-deep); }
+
+/* ============================================================
+   reduced motion — kill Ken-Burns, reveals show immediately
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .fv__panel img { animation: none !important; transform: scale(1.04); }
+  .fv__seam, .fv__pill, .fv__lockup, .fv__cols { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .pinned__media img { transition: opacity .001ms; }
+  .pinned__media img:first-of-type { opacity: 1; }
+  .stagger > * { opacity: 1 !important; transform: none !important; }
+  .fv__cue::after { animation: none; }
+  .report-card:hover .report-card__frame img { transform: none; }
+}
