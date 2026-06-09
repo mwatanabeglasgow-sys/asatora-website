@@ -64,7 +64,7 @@
 .fv__seam {
   position: absolute; top: 50%; left: 50%; z-index: 3;
   transform: translate(-50%, -50%);
-  display: flex; flex-direction: column; align-items: center; gap: var(--space-6);
+  display: flex; flex-direction: column; align-items: center; gap: var(--space-4);
   color: var(--white); text-align: center;
   mix-blend-mode: normal;
 }
@@ -73,7 +73,7 @@
 .fv__kanji {
   display: block;
   width: auto;
-  height: clamp(120px, 21vh, 240px);   /* 80% of prior 150/26vh/300 */
+  height: clamp(54px, 8vh, 88px);   /* small centred seam mark, Yamamotoyama-scale */
   filter:
     drop-shadow(0 0 16px rgba(251,250,244,.7))
     drop-shadow(0 0 3px rgba(251,250,244,.9))
@@ -83,7 +83,7 @@
 .fv__copy {
   display: block;
   width: auto;
-  height: clamp(96px, 16.5vh, 190px);
+  height: clamp(76px, 11.5vh, 124px);   /* consistent with the small kanji mark */
   filter:
     drop-shadow(0 0 12px rgba(251,250,244,.7))
     drop-shadow(0 0 2px rgba(251,250,244,.9))
