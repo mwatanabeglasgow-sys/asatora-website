@@ -70,6 +70,7 @@
 
   /* layout chrome */
   --header-h: 4.75rem;
+  --announce-h: 2.5rem; /* height of the fixed announcement bar; set to 0px on dismiss */
   --z-header: 50;
   --z-drawer: 80;
   --z-overlay: 70;
