@@ -166,7 +166,7 @@ p { max-width: var(--measure); }
 .header__nav a { color: inherit; font-size: var(--step-small); letter-spacing: .04em; text-transform: uppercase; }
 .header__nav a:hover { color: var(--matcha-deep); }
 .header__logo { justify-self: center; display: inline-flex; align-items: center; gap: var(--space-2); font-family: var(--font-display); font-size: var(--step-h3); letter-spacing: .04em; color: var(--ink); }
-.header__logo img { height: 2.4rem; width: auto; }
+.header__logo img { height: 3.2rem; width: auto; mix-blend-mode: multiply; } /* blends cream artwork into the paper/header field */
 .header__actions { justify-self: end; display: inline-flex; align-items: center; gap: var(--space-4); }
 .header--over-hero:not(.is-condensed), .header--over-hero:not(.is-condensed) a { color: var(--white); }
 .cart-toggle { position: relative; display: inline-flex; align-items: center; gap: .35rem; color: inherit; }
@@ -193,6 +193,11 @@ p { max-width: var(--measure); }
 .hero__inner { position: relative; z-index: 2; padding-block: calc(var(--header-h) + var(--space-16)) var(--space-24); color: var(--white); max-width: 42rem; }
 .hero .overline, .hero .display { color: var(--white); }
 .hero__cue { position: absolute; bottom: var(--space-8); left: 50%; transform: translateX(-50%); z-index: 2; color: var(--white); opacity: .8; font-size: var(--step-small); letter-spacing: .2em; text-transform: uppercase; }
+
+/* light hero variant — for cream/light brand product imagery (dark text + bottom scrim) */
+.hero--light .hero__bg::after { background: linear-gradient(180deg, rgba(242,236,227,0) 18%, rgba(242,236,227,.55) 62%, rgba(242,236,227,.9)); }
+.hero--light .hero__inner, .hero--light .overline, .hero--light .display { color: var(--ink); }
+.hero--light .hero__cue { color: var(--ink-soft); opacity: .7; }
 .hero__cue::after { content: ""; display: block; width: 1px; height: 2.5rem; background: currentColor; margin: var(--space-2) auto 0; }
 
 /* wax seal §8 — the only saturated, ownable mark */

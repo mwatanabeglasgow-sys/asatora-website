@@ -6,7 +6,7 @@
 
 :root {
   /* --- Color §4 : dominant warm-neutral field + ONE matcha accent --- */
-  --paper:        #F1EBDF; /* page background — warm ivory (dominant field) */
+  --paper:        #F2ECE3; /* page background — warm ivory, matched to brand product-photo cream */
   --paper-deep:   #E7DDCB; /* alternating section background */
   --kraft:        #C2A878; /* packaging tan — cards, dividers, accents */
   --kraft-deep:   #A6885A; /* kraft hover / edges */
