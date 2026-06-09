@@ -73,14 +73,23 @@
 .fv__kanji {
   display: block;
   width: auto;
-  height: clamp(150px, 26vh, 300px);
+  height: clamp(120px, 21vh, 240px);   /* 80% of prior 150/26vh/300 */
   filter:
     drop-shadow(0 0 16px rgba(251,250,244,.7))
     drop-shadow(0 0 3px rgba(251,250,244,.9))
     drop-shadow(0 6px 18px rgba(20,15,11,.35));
 }
-.fv__cols { display: flex; gap: var(--space-6); justify-content: center; height: clamp(8rem, 22vh, 14rem); }
-.fv__cols .vtext { font-size: var(--step-small); letter-spacing: .28em; opacity: .92; text-shadow: 0 1px 12px rgba(20,15,11,.6); }
+/* vertical brushwork tagline beneath the kanji — slightly smaller, same halo for legibility */
+.fv__copy {
+  display: block;
+  width: auto;
+  height: clamp(96px, 16.5vh, 190px);
+  filter:
+    drop-shadow(0 0 12px rgba(251,250,244,.7))
+    drop-shadow(0 0 2px rgba(251,250,244,.9))
+    drop-shadow(0 4px 14px rgba(20,15,11,.32));
+}
+@media (max-width: 767px) { .fv__copy { display: none; } }  /* keep the stacked mobile hero uncluttered */
 
 /* top-left "Shop" pill — mirrors the reference's Online-Shop chip */
 .fv__pill {
@@ -110,13 +119,12 @@
 /* FV load choreography */
 .fv__seam, .fv__pill { opacity: 0; transition: opacity var(--dur-fv) var(--ease-fv) .25s; }
 .fv.is-ready .fv__seam, .fv.is-ready .fv__pill { opacity: 1; }
-.fv__kanji, .fv__cols { transform: translateY(1.5rem); transition: transform var(--dur-fv) var(--ease-fv) .35s; }
+.fv__kanji, .fv__copy { transform: translateY(1.5rem); transition: transform var(--dur-fv) var(--ease-fv) .35s; }
 .fv.is-ready .fv__kanji { transform: none; }
-.fv.is-ready .fv__cols { transform: none; transition-delay: .55s; }
+.fv.is-ready .fv__copy { transform: none; transition-delay: .55s; }
 
 @media (max-width: 767px) {
   .fv__panels { grid-template-columns: 1fr; grid-template-rows: 1fr 1fr; }  /* stack panels */
-  .fv__cols { display: none; }
 }
 
 /* ============================================================
@@ -208,7 +216,7 @@
    ============================================================ */
 @media (prefers-reduced-motion: reduce) {
   .fv__panel img { animation: none !important; transform: scale(1.04); }
-  .fv__seam, .fv__pill, .fv__kanji, .fv__cols { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .fv__seam, .fv__pill, .fv__kanji, .fv__copy { opacity: 1 !important; transform: none !important; transition: none !important; }
   .pinned__media img { transition: opacity .001ms; }
   .pinned__media img:first-of-type { opacity: 1; }
   .stagger > * { opacity: 1 !important; transform: none !important; }
