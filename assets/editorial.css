@@ -77,6 +77,19 @@
   .fv__mark-copy { height: clamp(62px, 9vh, 88px); }
 }
 
+/* left-panel build note — vertical JP copy hinting the retreat under construction */
+.fv__buildnote {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  z-index: 3; margin: 0; pointer-events: none;
+  display: flex; flex-direction: row-reverse; align-items: flex-start;
+  gap: clamp(6px, 0.9vw, 14px);
+  color: var(--white); font-family: var(--font-jp-head); font-weight: 500;
+  text-shadow: 0 1px 10px rgba(20,15,11,.6), 0 0 2px rgba(20,15,11,.5);
+}
+.fv__buildnote span { writing-mode: vertical-rl; display: block; }
+.fv__buildnote-main { font-size: clamp(1.45rem, 3.6vh, 2.3rem); letter-spacing: .14em; }
+.fv__buildnote-sub  { font-size: clamp(.82rem, 1.7vh, 1.05rem); letter-spacing: .22em; opacity: .92; }
+
 /* scroll cue, centred bottom */
 .fv__cue {
   position: absolute; bottom: var(--space-8); left: 50%; transform: translateX(-50%); z-index: 4;
