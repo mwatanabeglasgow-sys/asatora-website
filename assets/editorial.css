@@ -68,8 +68,8 @@
   z-index: 4; display: flex; flex-direction: column; align-items: center;
   gap: clamp(10px, 1.6vh, 20px); pointer-events: none;
 }
-.fv__mark img { display: block; width: auto;   /* soft scrim so white reads on the light hero panel too */
-  filter: drop-shadow(0 1px 10px rgba(20,15,11,.55)) drop-shadow(0 0 2px rgba(20,15,11,.4)); }
+.fv__mark img { display: block; width: auto;   /* dark edge + glow so the white reads on the light tin panel too */
+  filter: drop-shadow(0 0 1.5px rgba(20,15,11,.9)) drop-shadow(0 2px 8px rgba(20,15,11,.65)) drop-shadow(0 0 16px rgba(20,15,11,.5)); }
 .fv__mark-logo { height: clamp(44px, 6.5vh, 72px); }   /* calligraphy on top, slightly larger */
 .fv__mark-copy { height: clamp(72px, 10vh, 108px); }   /* three-line tagline beneath */
 @media (max-width: 700px) {           /* panels stack — keep the mark centred & legible */
@@ -89,16 +89,6 @@
 .fv__buildnote span { writing-mode: vertical-rl; display: block; }
 .fv__buildnote-main { font-size: clamp(1.45rem, 3.6vh, 2.3rem); letter-spacing: .14em; }
 .fv__buildnote-sub  { font-size: clamp(.82rem, 1.7vh, 1.05rem); letter-spacing: .22em; opacity: .92; }
-
-/* scroll cue, centred bottom */
-.fv__cue {
-  position: absolute; bottom: var(--space-8); left: 50%; transform: translateX(-50%); z-index: 4;
-  color: var(--white); opacity: .85; font-size: var(--step-overline);
-  letter-spacing: .3em; text-transform: uppercase;
-}
-.fv__cue::after { content: ""; display: block; width: 1px; height: 2.5rem; margin: var(--space-2) auto 0; background: currentColor;
-  animation: cue-drop 2.4s var(--ease) infinite; transform-origin: top; }
-@keyframes cue-drop { 0%,100% { transform: scaleY(.4); opacity: .4; } 50% { transform: scaleY(1); opacity: 1; } }
 
 /* FV load choreography */
 
@@ -212,6 +202,5 @@
   .pinned__media img { transition: opacity .001ms; }
   .pinned__media img:first-of-type { opacity: 1; }
   .stagger > * { opacity: 1 !important; transform: none !important; }
-  .fv__cue::after { animation: none; }
   .report-card:hover .report-card__frame img { transform: none; }
 }
