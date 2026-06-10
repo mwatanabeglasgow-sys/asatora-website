@@ -77,21 +77,6 @@
   .fv__mark-copy { height: clamp(62px, 9vh, 88px); }
 }
 
-/* top-left "Shop" pill — mirrors the reference's Online-Shop chip */
-.fv__pill {
-  position: absolute; top: calc(var(--announce-h, 0px) + var(--header-h) + var(--space-2)); left: var(--gutter);
-  z-index: 4;
-  display: inline-flex; align-items: center; gap: var(--space-2);
-  padding: var(--space-2) var(--space-4);
-  border: 1px solid rgba(251,250,244,.45); border-radius: 100px;
-  color: var(--white); font-size: var(--step-overline);
-  letter-spacing: var(--track-overline); text-transform: uppercase;
-  background: rgba(20,15,11,.18); backdrop-filter: blur(6px);
-  transition: background-color var(--dur) var(--ease), border-color var(--dur) var(--ease);
-}
-.fv__pill:hover { color: var(--white); background: rgba(20,15,11,.4); border-color: var(--white); }
-.fv__pill svg { width: 14px; height: 14px; }
-
 /* scroll cue, centred bottom */
 .fv__cue {
   position: absolute; bottom: var(--space-8); left: 50%; transform: translateX(-50%); z-index: 4;
@@ -103,8 +88,6 @@
 @keyframes cue-drop { 0%,100% { transform: scaleY(.4); opacity: .4; } 50% { transform: scaleY(1); opacity: 1; } }
 
 /* FV load choreography */
-.fv__pill { opacity: 0; transition: opacity var(--dur-fv) var(--ease-fv) .25s; }
-.fv.is-ready .fv__pill { opacity: 1; }
 
 @media (max-width: 767px) {
   .fv__panels { grid-template-columns: 1fr; grid-template-rows: 1fr 1fr; }  /* stack panels */
@@ -213,7 +196,6 @@
    ============================================================ */
 @media (prefers-reduced-motion: reduce) {
   .fv__panel img { animation: none !important; transform: scale(1.04); }
-  .fv__pill { opacity: 1 !important; transform: none !important; transition: none !important; }
   .pinned__media img { transition: opacity .001ms; }
   .pinned__media img:first-of-type { opacity: 1; }
   .stagger > * { opacity: 1 !important; transform: none !important; }
