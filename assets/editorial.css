@@ -68,13 +68,12 @@
   z-index: 4; display: flex; flex-direction: column; align-items: center;
   gap: clamp(10px, 1.6vh, 20px); pointer-events: none;
 }
-.fv__mark img { display: block; width: auto;   /* dark edge + glow so the white reads on the light tin panel too */
-  filter: drop-shadow(0 0 1.5px rgba(20,15,11,.9)) drop-shadow(0 2px 8px rgba(20,15,11,.65)) drop-shadow(0 0 16px rgba(20,15,11,.5)); }
-.fv__mark-logo { height: clamp(44px, 6.5vh, 72px); }   /* calligraphy on top, slightly larger */
-.fv__mark-copy { height: clamp(72px, 10vh, 108px); }   /* three-line tagline beneath */
+.fv__mark img { display: block; width: auto; }
+.fv__mark-logo { height: clamp(62px, 9.1vh, 101px); }   /* calligraphy on top */
+.fv__mark-copy { height: clamp(101px, 14vh, 151px); }   /* three-line tagline beneath */
 @media (max-width: 700px) {           /* panels stack — keep the mark centred & legible */
-  .fv__mark-logo { height: clamp(38px, 6vh, 56px); }
-  .fv__mark-copy { height: clamp(62px, 9vh, 88px); }
+  .fv__mark-logo { height: clamp(53px, 8.4vh, 78px); }
+  .fv__mark-copy { height: clamp(87px, 12.6vh, 123px); }
 }
 
 /* left-panel build note — vertical JP copy hinting the retreat under construction */
