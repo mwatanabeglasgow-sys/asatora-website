@@ -61,6 +61,22 @@
 @keyframes kenburns-out { from { transform: scale(1.14) translate(1.5%, 1%); } to { transform: scale(1.04) translate(0,0); } }
 
 
+/* centre seam mark — white 朝虎 logo + vertical copy, clustered on the seam
+   (matches the Yamamotoyama hero: copy column left, logo right, mid-height) */
+.fv__mark {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  z-index: 4; display: flex; align-items: center; gap: clamp(8px, 1vw, 16px);
+  pointer-events: none;
+}
+.fv__mark img { display: block; width: auto;   /* soft scrim so white reads on the light hero panel too */
+  filter: drop-shadow(0 1px 10px rgba(20,15,11,.55)) drop-shadow(0 0 2px rgba(20,15,11,.4)); }
+.fv__mark-copy { height: clamp(78px, 11vh, 120px); }
+.fv__mark-logo { height: clamp(34px, 5vh, 56px); }
+@media (max-width: 700px) {           /* panels stack — keep the mark centred & legible */
+  .fv__mark-copy { height: clamp(64px, 9vh, 90px); }
+  .fv__mark-logo { height: clamp(30px, 4.5vh, 44px); }
+}
+
 /* top-left "Shop" pill — mirrors the reference's Online-Shop chip */
 .fv__pill {
   position: absolute; top: calc(var(--announce-h, 0px) + var(--header-h) + var(--space-2)); left: var(--gutter);
