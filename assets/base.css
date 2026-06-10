@@ -172,6 +172,16 @@ p { max-width: var(--measure); }
 .header__actions { justify-self: end; display: inline-flex; align-items: center; gap: var(--space-3); }
 @media (min-width: 768px) { .header__actions { gap: var(--space-4); } }
 .header--over-hero:not(.is-condensed), .header--over-hero:not(.is-condensed) a { color: var(--white); }
+/* legibility while the header floats over the hero (until it condenses into the next section):
+   a soft top-down scrim behind the bar + a shadow on the marks so white reads on bright imagery */
+.header--over-hero:not(.is-condensed)::before {
+  content: ""; position: absolute; left: 0; right: 0; top: 0;
+  height: calc(var(--header-h) * 2.1); z-index: -1; pointer-events: none;
+  background: linear-gradient(180deg, rgba(20,15,11,.5) 0%, rgba(20,15,11,.22) 45%, rgba(20,15,11,0) 100%);
+}
+.header--over-hero:not(.is-condensed) a,
+.header--over-hero:not(.is-condensed) .lang-toggle { text-shadow: 0 1px 6px rgba(20,15,11,.5); }
+.header--over-hero:not(.is-condensed) .header__wordmark { filter: drop-shadow(0 1px 6px rgba(20,15,11,.55)); }
 .cart-toggle { position: relative; display: inline-flex; align-items: center; gap: .35rem; color: inherit; }
 .cart-count { min-width: 1.25rem; height: 1.25rem; padding: 0 .35rem; border-radius: 1rem; background: var(--matcha-deep); color: var(--white); font-size: .7rem; display: inline-flex; align-items: center; justify-content: center; }
 .cart-count[data-count="0"] { display: none; }
