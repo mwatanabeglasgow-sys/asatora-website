@@ -46,19 +46,7 @@
 .fv__panel img, .fv__panel video {
   position: absolute; inset: 0;
   width: 100%; height: 100%; object-fit: cover;
-  transform: scale(1.04);
-  will-change: transform;
 }
-/* video panel (own touch): live footage replaces the Ken-Burns still.
-   The <video> sits over its poster/fallback img; fallback shows under reduced-motion or no-autoplay. */
-.fv__panel--video video { z-index: 1; transform: scale(1.02); animation: none !important; }
-.fv__panel--video .fv__video-fallback { z-index: 0; }
-@media (prefers-reduced-motion: reduce) { .fv__panel--video video { display: none; } }
-/* Ken-Burns: slow, infinite, each panel drifts the opposite way */
-.fv.is-ready .fv__panel--a img { animation: kenburns-in  var(--dur-kenburns) var(--ease-fv) infinite alternate; }
-.fv.is-ready .fv__panel--b img { animation: kenburns-out var(--dur-kenburns) var(--ease-fv) infinite alternate; }
-@keyframes kenburns-in  { from { transform: scale(1.04) translate(0,0); } to { transform: scale(1.14) translate(-1.5%, -1%); } }
-@keyframes kenburns-out { from { transform: scale(1.14) translate(1.5%, 1%); } to { transform: scale(1.04) translate(0,0); } }
 
 
 /* centre seam mark — white 朝虎 logo + vertical copy, clustered on the seam
@@ -197,7 +185,6 @@
    reduced motion — kill Ken-Burns, reveals show immediately
    ============================================================ */
 @media (prefers-reduced-motion: reduce) {
-  .fv__panel img { animation: none !important; transform: scale(1.04); }
   .pinned__media img { transition: opacity .001ms; }
   .pinned__media img:first-of-type { opacity: 1; }
   .stagger > * { opacity: 1 !important; transform: none !important; }
