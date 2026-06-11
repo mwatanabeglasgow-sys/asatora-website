@@ -6,6 +6,16 @@
    References tokens.css. No values hardcoded that tokens cover.
    ============================================================ */
 
+/* Self-hosted hero calligraphy (New Tegomin, subset to the hero glyphs).
+   Self-hosted so it loads from our own origin even if Google Fonts is blocked. */
+@font-face {
+  font-family: "New Tegomin";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("new-tegomin-hero.woff2") format("woff2");
+}
+
 :root {
   /* the reference's signature easing — slow, weighted, no bounce */
   --ease-fv: cubic-bezier(0.21, 0.51, 0.51, 1);
