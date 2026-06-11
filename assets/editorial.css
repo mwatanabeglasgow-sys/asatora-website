@@ -147,11 +147,11 @@
 .pinned__item:first-child { border-top: 0; padding-top: 0; }
 .pinned__item .price { margin-top: var(--space-5); }
 .pinned__item .buy__row { margin-top: var(--space-6); }
-.pinned__num { font-family: var(--font-display); font-size: var(--step-h3); color: var(--kraft-deep); }
+.pinned__num { font-family: var(--font-display); font-size: var(--step-h3); color: var(--ink-soft); }
 /* product text — Yamamotoyama editorial proportions:
    small serif heading + small, narrow, airy paragraph + vertical JP label in the margin */
 .pinned__item { position: relative; }
-.pinned__item .overline { color: var(--kraft-deep); margin-top: var(--space-4) !important; }
+.pinned__item .overline { color: var(--ink-soft); margin-top: var(--space-4) !important; }
 .pinned__item h2 { font-size: clamp(1.4rem, 1.7vw, 1.8rem); font-weight: 400; line-height: 1.22; letter-spacing: .01em; margin-top: var(--space-3) !important; }
 .pinned__item .lede { font-size: var(--step-small); line-height: 1.9; max-width: 22ch; color: var(--text-soft); letter-spacing: .02em; margin-top: var(--space-4) !important; }
 .pinned__jp {
@@ -211,9 +211,9 @@
 .news-item { display: grid; grid-template-columns: 7rem 1fr auto; align-items: baseline; gap: var(--space-8);
   padding-block: var(--space-6); border-top: 1px solid var(--gold); }
 .news-item:last-child { border-bottom: 1px solid var(--gold); }
-.news-item time { font-size: var(--step-overline); letter-spacing: .2em; text-transform: uppercase; color: var(--kraft-deep); white-space: nowrap; }
+.news-item time { font-size: var(--step-overline); letter-spacing: .2em; text-transform: uppercase; color: var(--ink-soft); white-space: nowrap; }
 .news-item h3 { font-size: var(--step-body); font-weight: 400; letter-spacing: .01em; }
-.news-item::after { content: "—"; color: var(--kraft-deep); transition: transform var(--dur) var(--ease); }
+.news-item::after { content: "—"; color: var(--ink-soft); transition: transform var(--dur) var(--ease); }
 .news-item:hover h3 { color: var(--matcha-deep); }
 .news-item:hover::after { transform: translateX(.35rem); color: var(--matcha-deep); }
 @media (max-width: 640px) { .news-item { grid-template-columns: 1fr auto; gap: var(--space-2) var(--space-6); }
