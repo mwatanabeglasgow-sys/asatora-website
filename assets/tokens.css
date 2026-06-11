@@ -53,7 +53,7 @@
   --space-24:6rem;  --space-32:8rem;
   --container: 1280px;
   --gutter: clamp(1.25rem, 5vw, 4rem);
-  --section-y: clamp(5rem, 10vw, 9rem);
+  --section-y: clamp(6.5rem, 12vw, 12rem);
   --radius: 4px;
 
   /* --- Texture & shadow §7 --- */

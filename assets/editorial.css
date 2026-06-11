@@ -192,11 +192,18 @@
 /* ============================================================
    5 · NEWS GRID — auto-fit columns (reference announce section)
    ============================================================ */
-.news-grid { display: grid; gap: var(--space-8); grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); }
-.news-item { display: grid; gap: var(--space-3); padding-top: var(--space-6); border-top: 1px solid var(--gold); }
-.news-item time { font-size: var(--step-overline); letter-spacing: .2em; text-transform: uppercase; color: var(--kraft-deep); }
-.news-item h3 { font-size: var(--step-h3); }
+/* news as hairline list rows: date · title · arrow (Yamamotoyama list pattern) */
+.news-grid { display: flex; flex-direction: column; }
+.news-item { display: grid; grid-template-columns: 7rem 1fr auto; align-items: baseline; gap: var(--space-8);
+  padding-block: var(--space-6); border-top: 1px solid var(--gold); }
+.news-item:last-child { border-bottom: 1px solid var(--gold); }
+.news-item time { font-size: var(--step-overline); letter-spacing: .2em; text-transform: uppercase; color: var(--kraft-deep); white-space: nowrap; }
+.news-item h3 { font-size: var(--step-body); font-weight: 400; letter-spacing: .01em; }
+.news-item::after { content: "—"; color: var(--kraft-deep); transition: transform var(--dur) var(--ease); }
 .news-item:hover h3 { color: var(--matcha-deep); }
+.news-item:hover::after { transform: translateX(.35rem); color: var(--matcha-deep); }
+@media (max-width: 640px) { .news-item { grid-template-columns: 1fr auto; gap: var(--space-2) var(--space-6); }
+  .news-item time { grid-column: 1 / -1; } }
 
 /* ============================================================
    reduced motion — kill Ken-Burns, reveals show immediately
