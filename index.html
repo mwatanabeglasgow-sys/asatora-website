@@ -67,7 +67,7 @@
 
     <!-- 2 · PINNED PRODUCTS — image pins while product entries scroll past (reference products pattern) -->
     <section class="section" id="shop" style="position:relative">
-      <span class="vlabel" aria-hidden="true">茶 — Products</span>
+      <span class="vlabel" aria-hidden="true">茶 {Products}</span>
       <div class="container pinned">
         <div class="pinned__grid">
           <div class="pinned__media" aria-hidden="true">
@@ -88,9 +88,7 @@
           <div class="pinned__list">
             <article class="pinned__item" data-pin-trigger="0">
               <p class="pinned__jp" lang="ja" aria-hidden="true">朝虎 抹茶</p>
-              <p class="pinned__num">01</p>
-              <p class="overline" style="margin-top:var(--space-3)">The signature tin</p>
-              <h2 style="margin-top:var(--space-3)">30g · first harvest</h2>
+              <h2>30g · first harvest</h2>
               <p class="lede" style="margin-top:var(--space-4)">Shade-grown, stone-milled, sealed by hand.</p>
               <p class="price">¥4,800</p>
               <div class="buy__row">
@@ -99,9 +97,7 @@
             </article>
             <article class="pinned__item" data-pin-trigger="1">
               <p class="pinned__jp" lang="ja" aria-hidden="true">詰め替え</p>
-              <p class="pinned__num">02</p>
-              <p class="overline" style="margin-top:var(--space-3)">The refill</p>
-              <h2 style="margin-top:var(--space-3)">30g · refill</h2>
+              <h2>30g · refill</h2>
               <p class="lede" style="margin-top:var(--space-4)">The same matcha, for the tin you keep.</p>
               <p class="price">¥4,200</p>
               <div class="buy__row">
@@ -110,9 +106,7 @@
             </article>
             <article class="pinned__item" data-pin-trigger="2">
               <p class="pinned__jp" lang="ja" aria-hidden="true">正福茶園</p>
-              <p class="pinned__num">03</p>
-              <p class="overline" style="margin-top:var(--space-3)">Provenance</p>
-              <h2 style="margin-top:var(--space-3)">One garden · 正福茶園</h2>
+              <h2>One garden · 正福茶園</h2>
               <p class="lede" style="margin-top:var(--space-4)">Traceable to one mountain. Never blended.</p>
               <p style="margin-top:var(--space-4)"><a class="textlink" href="#provenance">The story</a></p>
             </article>
@@ -123,11 +117,10 @@
 
     <!-- 3 · PROVENANCE — staggered translateY reveal (reference articles pattern) -->
     <section class="section section--paper-deep" id="provenance" style="position:relative;overflow:hidden">
-      <span class="vlabel" aria-hidden="true">産地 — Provenance</span>
+      <span class="vlabel" aria-hidden="true">産地 {Provenance}</span>
       <div class="container feature feature--mirror">
         <div class="feature__media reveal"><img src="assets/provenance.jpg" alt="Asatora refill bag showing the terraced tea-mountain line-art of Shibushi" width="1120" height="1500" loading="lazy"></div>
         <div class="stack stagger">
-          <p class="overline">Provenance</p>
           <h2>One mountain, in Shibushi</h2>
           <p class="lede">Shade-grown, stone-milled at first light.</p>
           <p lang="ja" style="font-family:var(--font-jp-head);color:var(--ink-soft)">鹿児島・志布志 正福茶園</p>
@@ -138,9 +131,10 @@
 
     <!-- 4 · FIELD REPORTS — Swiper carousel of editorial cards (reference slider pattern) -->
     <section class="section reports" id="journal">
+      <span class="vlabel" aria-hidden="true">畑 {Field}</span>
       <div class="container">
         <div class="stagger" style="display:flex;align-items:end;justify-content:space-between;gap:var(--space-8);flex-wrap:wrap">
-          <div><p class="overline">From the mountain</p><h2 style="margin-top:var(--space-3)">Field reports</h2></div>
+          <div><h2>Field reports</h2></div>
           <a class="textlink" href="#letter">All dispatches</a>
         </div>
         <div class="swiper" data-reports style="margin-top:var(--space-12)">
@@ -179,17 +173,17 @@
       <div class="band__bg"><img src="assets/solo-unit.jpg" alt="A single guest container glowing at dusk on the mountain" width="1600" height="893" loading="lazy"></div>
       <svg class="band__lineart" viewBox="0 0 1200 300" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><path d="M0 250 L220 110 L360 180 L520 70 L680 200 L840 60 L1000 170 L1200 90"/><path d="M0 290 L300 200 L480 260 L640 190 L820 280 L1000 200 L1200 250" opacity=".6"/></svg>
       <div class="container band__inner stack stagger">
-        <p class="overline">The Retreat</p>
         <h2 class="display">Eight guests. One mountain.<br>Seven days.</h2>
         <p class="lede" style="max-width:34ch">A practice where the matcha grows. Opening soon.</p>
         <a class="btn btn--primary" href="#letter">Join the waitlist</a>
       </div>
     </section>
 
-    <!-- 6 · NEWS — auto-fit grid (reference announce section) -->
+    <!-- 6 · NEWS — hairline list rows -->
     <section class="section">
+      <span class="vlabel" aria-hidden="true">報せ {News}</span>
       <div class="container">
-        <div class="stagger" style="margin-bottom:var(--space-12)"><p class="overline">News</p><h2 style="margin-top:var(--space-3)">Notes &amp; releases</h2></div>
+        <div class="stagger" style="margin-bottom:var(--space-12)"><h2>Notes &amp; releases</h2></div>
         <div class="news-grid">
           <a class="news-item" href="#shop"><time datetime="2026-06">2026 · 06</time><h3>First harvest — limited release</h3></a>
           <a class="news-item" href="#retreat"><time datetime="2026-05">2026 · 05</time><h3>Retreat waitlist open</h3></a>
@@ -200,9 +194,9 @@
 
     <!-- 7 · mountain letter -->
     <section class="section section--paper-deep" id="letter">
+      <span class="vlabel" aria-hidden="true">便り {Letter}</span>
       <div class="container">
         <div class="letter reveal">
-          <p class="overline">The Mountain Letter</p>
           <h2 class="display" style="font-size:var(--step-h2)">A note from the mountain</h2>
           <p class="lede" style="margin:0 auto;max-width:30ch">Harvest news and brewing notes — weekly.</p>
           <form data-letter onsubmit="return false">
