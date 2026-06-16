@@ -16,15 +16,15 @@
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%236F7C3C'/%3E%3Ctext x='16' y='22' font-size='18' text-anchor='middle' fill='%23FBFAF4' font-family='serif'%3E朝%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&family=Hanken+Grotesk:wght@400;500;600;700&family=Shippori+Mincho:wght@400;500;600&family=Noto+Sans+JP:wght@400;500&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Hanken+Grotesk:wght@400;500;600;700&family=Shippori+Mincho:wght@400;500;600&family=Noto+Sans+JP:wght@400;500&display=swap">
   <link rel="preload" href="assets/new-tegomin-hero.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" as="image" href="assets/matcha-grind.jpg">
   <link rel="preload" as="image" href="assets/hero-tin-2.jpg">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-  <link rel="stylesheet" href="assets/tokens.css?v=2">
-  <link rel="stylesheet" href="assets/base.css?v=2">
-  <link rel="stylesheet" href="assets/editorial.css?v=2">
+  <link rel="stylesheet" href="assets/tokens.css?v=3">
+  <link rel="stylesheet" href="assets/base.css?v=3">
+  <link rel="stylesheet" href="assets/editorial.css?v=3">
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"Organization","name":"Asatora","url":"/","description":"Single-origin matcha from Shibushi, Kagoshima."}
   </script>
@@ -62,6 +62,7 @@
       <div class="fv__mark">
         <img class="fv__mark-logo" src="assets/logo-kanji-white.png" alt="朝虎 — Asatora" decoding="async">
         <div class="fv__mark-copy" lang="ja"><span>三代続く茶農家</span><span>鹿児島・志布志</span><span>新しいお茶の体験</span></div>
+        <p class="fv__mark-en" lang="en">Single-origin Japanese matcha, shade-grown and stone-milled on one Kagoshima mountain.</p>
       </div>
     </section>
 
@@ -92,7 +93,7 @@
               <p class="lede" style="margin-top:var(--space-4)">Shade-grown, stone-milled, sealed by hand.</p>
               <p class="price">¥4,800</p>
               <div class="buy__row">
-                <button class="btn btn--primary" data-cart-open><span class="btn__label">Add to cart</span></button>
+                <a class="btn btn--primary" href="#letter" data-notify><span class="btn__label">Notify me at launch</span></a>
               </div>
             </article>
             <article class="pinned__item" data-pin-trigger="1">
@@ -101,7 +102,7 @@
               <p class="lede" style="margin-top:var(--space-4)">The same matcha, for the tin you keep.</p>
               <p class="price">¥4,200</p>
               <div class="buy__row">
-                <button class="btn btn--primary" data-cart-open><span class="btn__label">Add to cart</span></button>
+                <a class="btn btn--primary" href="#letter" data-notify><span class="btn__label">Notify me at launch</span></a>
               </div>
             </article>
             <article class="pinned__item" data-pin-trigger="2">
@@ -124,7 +125,7 @@
           <h2>One mountain, in Shibushi</h2>
           <p class="lede">Shade-grown, stone-milled at first light.</p>
           <p lang="ja" style="font-family:var(--font-jp-head);color:var(--ink-soft)">鹿児島・志布志 正福茶園</p>
-          <p><a class="textlink" href="#letter">The story</a></p>
+          <p><a class="textlink" href="#journal">Field reports from the mountain</a></p>
         </div>
       </div>
     </section>
@@ -135,7 +136,7 @@
       <div class="container">
         <div class="stagger" style="display:flex;align-items:end;justify-content:space-between;gap:var(--space-8);flex-wrap:wrap">
           <div><h2>Field reports</h2></div>
-          <a class="textlink" href="#letter">All dispatches</a>
+          <a class="textlink" href="#letter" data-notify>Get the dispatches</a>
         </div>
         <div class="swiper" data-reports style="margin-top:var(--space-12)">
           <div class="swiper-wrapper">
@@ -175,7 +176,7 @@
       <div class="container band__inner stack stagger">
         <h2 class="display">Eight guests. One mountain.<br>Seven days.</h2>
         <p class="lede" style="max-width:34ch">A practice where the matcha grows. Opening soon.</p>
-        <a class="btn btn--primary" href="#letter">Join the waitlist</a>
+        <a class="btn btn--primary" href="#letter" data-notify>Join the waitlist</a>
       </div>
     </section>
 
@@ -199,7 +200,7 @@
         <div class="letter reveal">
           <h2 class="display" style="font-size:var(--step-h2)">A note from the mountain</h2>
           <p class="lede" style="margin:0 auto;max-width:30ch">Harvest news and brewing notes — weekly.</p>
-          <form data-letter onsubmit="return false">
+          <form data-letter novalidate>
             <div class="field" style="flex:1"><label class="visually-hidden" for="le">Your email</label><input class="input" type="email" id="le" placeholder="Your email" autocomplete="email"></div>
             <button type="submit" class="btn btn--primary"><span class="btn__spinner"></span><span class="btn__label">Subscribe</span></button>
           </form>
@@ -218,8 +219,8 @@
           <p class="small" style="max-width:32ch;margin-top:1rem;opacity:.8">Single-origin matcha from 正福茶園, Shibushi, Kagoshima.</p>
           <p class="small" style="margin-top:1rem;opacity:.6;letter-spacing:.18em;text-transform:uppercase">朝虎 · Japanese Matcha</p>
         </div>
-        <nav aria-label="Explore"><h4>Explore</h4><ul role="list" class="stack" style="--space-4:.5rem"><li><a href="#shop">Shop</a></li><li><a href="#provenance">Story</a></li><li><a href="#letter">Journal</a></li></ul></nav>
-        <nav aria-label="Care"><h4>Care</h4><ul role="list" class="stack" style="--space-4:.5rem"><li><a href="#letter">Shipping</a></li><li><a href="#letter">Contact</a></li><li><a href="#letter">The Mountain Letter</a></li></ul></nav>
+        <nav aria-label="Explore"><h4>Explore</h4><ul role="list" class="stack" style="--space-4:.5rem"><li><a href="#shop">Shop</a></li><li><a href="#provenance">Story</a></li><li><a href="#journal">Field reports</a></li><li><a href="#retreat">Retreat</a></li></ul></nav>
+        <nav aria-label="Keep in touch"><h4>Keep in touch</h4><ul role="list" class="stack" style="--space-4:.5rem"><li><a href="#letter">The Mountain Letter</a></li><li><a href="#letter" data-notify>Join the waitlist</a></li></ul></nav>
       </div>
       <div class="footer__bottom"><span>© 2026 Asatora. All rights reserved.</span><span>Shipped from Japan</span></div>
     </div>
@@ -229,7 +230,7 @@
   <div class="overlay" data-overlay aria-hidden="true"></div>
   <aside class="drawer" data-cart-drawer role="dialog" aria-modal="true" aria-label="Cart" aria-hidden="true">
     <div class="drawer__head"><h2 class="overline">Cart</h2><button type="button" data-cart-close aria-label="Close cart"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
-    <div class="drawer__items" data-cart-items><div class="drawer__empty"><p class="lede">Checkout opens with the store launch.</p><p class="small" style="color:var(--text-soft);margin-top:.5rem">This is the design preview — purchasing runs on the Shopify theme.</p><p style="margin-top:1rem"><a class="textlink" href="#shop">Back to shop</a></p></div></div>
+    <div class="drawer__items" data-cart-items><div class="drawer__empty"><p class="lede">The store isn't open yet.</p><p class="small" style="color:var(--text-soft);margin-top:.5rem">First harvest is finished in small batches. Join the Mountain Letter and we'll write you the day it goes on sale.</p><p style="margin-top:1rem"><a class="textlink" href="#letter" data-notify data-cart-close>Notify me at launch</a></p></div></div>
   </aside>
 
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
@@ -267,8 +268,10 @@
     addEventListener("load", function(){
       if (!R && window.Lenis) {
         var lenis = new Lenis({ duration: 1.1, easing: function(t){ return Math.min(1, 1.001 - Math.pow(2, -10 * t)); } });
+        window.lenis = lenis;
         function raf(t){ lenis.raf(t); requestAnimationFrame(raf); } requestAnimationFrame(raf);
-        document.querySelectorAll('a[href^="#"]').forEach(function(a){ a.addEventListener("click", function(e){ var id=a.getAttribute("href"); if(id.length>1){ var el=document.querySelector(id); if(el){ e.preventDefault(); lenis.scrollTo(el, {offset:-80}); } } }); });
+        // data-notify links are handled by the capture funnel below (scroll + focus); skip them here
+        document.querySelectorAll('a[href^="#"]:not([data-notify])').forEach(function(a){ a.addEventListener("click", function(e){ var id=a.getAttribute("href"); if(id.length>1){ var el=document.querySelector(id); if(el){ e.preventDefault(); lenis.scrollTo(el, {offset:-80}); } } }); });
       }
       // Field-reports carousel
       if (window.Swiper) {
@@ -285,12 +288,46 @@
     function openD(){var d=document.querySelector("[data-cart-drawer]"),o=document.querySelector("[data-overlay]");d.classList.add("is-open");o.classList.add("is-open");document.body.style.overflow="hidden";}
     function closeD(){var d=document.querySelector("[data-cart-drawer]"),o=document.querySelector("[data-overlay]");d.classList.remove("is-open");o.classList.remove("is-open");document.body.style.overflow="";}
     document.addEventListener("click",function(e){ if(e.target.closest("[data-cart-open]")){e.preventDefault();openD();} if(e.target.closest("[data-cart-close]"))closeD(); });
+    // pre-launch capture: every "Notify me" / "Join the waitlist" CTA funnels to the one Mountain Letter form
+    document.addEventListener("click",function(e){
+      var n=e.target.closest("[data-notify]"); if(!n) return;
+      e.preventDefault();
+      if(typeof closeD==="function") closeD();
+      var letter=document.getElementById("letter"), input=document.getElementById("le");
+      var focusInput=function(){ if(input){ try{ input.focus({preventScroll:true}); }catch(_){ input.focus(); } } };
+      if(window.lenis && letter){ window.lenis.scrollTo(letter,{offset:-80}); setTimeout(focusInput,700); }
+      else if(letter){ letter.scrollIntoView({behavior:R?"auto":"smooth",block:"start"}); setTimeout(focusInput,R?0:600); }
+      else focusInput();
+    });
     document.querySelector("[data-overlay]").addEventListener("click",closeD);
     addEventListener("keydown",function(e){ if(e.key==="Escape")closeD(); });
     var mb=document.querySelector("[data-menu-open]"), mn=document.querySelector("[data-mobile-nav]");
     mb.addEventListener("click",function(){ var open=mn.hasAttribute("hidden"); open?mn.removeAttribute("hidden"):mn.setAttribute("hidden",""); mb.setAttribute("aria-expanded",String(open)); });
     var ab=document.querySelector("[data-announce-close]"); if(ab)ab.addEventListener("click",function(){this.closest("[data-announce]").remove();document.documentElement.style.setProperty("--announce-h","0px");});
-    document.querySelector("[data-letter]").addEventListener("submit",function(){ var m=document.querySelector("[data-letter-msg]"); m.className="letter__msg is-ok"; m.textContent="Welcome to the mountain."; this.reset(); });
+    (function(){
+      var form=document.querySelector("[data-letter]");
+      if(!form) return;
+      var input=form.querySelector("#le");
+      var msg=document.querySelector("[data-letter-msg]");
+      // pragmatic email shape check — one @, a dot in the domain, no spaces
+      var valid=function(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); };
+      var clear=function(){ if(input) input.removeAttribute("aria-invalid"); };
+      input&&input.addEventListener("input",function(){ if(input.getAttribute("aria-invalid")==="true"&&valid(input.value.trim())) clear(); });
+      form.addEventListener("submit",function(e){
+        e.preventDefault();
+        var v=input?input.value.trim():"";
+        if(!valid(v)){
+          if(input){ input.setAttribute("aria-invalid","true"); input.focus(); }
+          msg.className="letter__msg is-error";
+          msg.textContent=v?"That email address needs an @ and a domain. Try: name@example.com":"Please enter your email address.";
+          return;
+        }
+        clear();
+        msg.className="letter__msg is-ok";
+        msg.textContent="You're on the list. We'll write from the mountain when there's news.";
+        form.reset();
+      });
+    })();
   </script>
 </body>
 </html>

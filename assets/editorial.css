@@ -76,9 +76,20 @@
 }
 .fv__mark-copy span { writing-mode: vertical-rl; display: block; line-height: 1;
   font-size: clamp(1.3rem, 2.47vh, 1.76rem); letter-spacing: .12em; }
+/* English value line — one quiet, decisive caption so an export-market first-timer
+   knows what Asatora sells, without crowding the brush 朝虎 mark above it */
+.fv__mark-en {
+  margin: clamp(8px, 1.4vh, 16px) 0 0; max-width: 32ch;
+  font-family: var(--font-body); font-weight: 500;
+  font-size: clamp(.72rem, 1.45vh, .9rem); line-height: 1.55;
+  letter-spacing: .04em; text-align: center;
+  color: rgba(251,250,244,.92); text-shadow: 0 1px 8px rgba(20,15,11,.6);
+  text-wrap: balance;
+}
 @media (max-width: 700px) {           /* panels stack — keep the mark centred & legible */
   .fv__mark-logo { height: clamp(69px, 10.9vh, 101px); }
   .fv__mark-copy span { font-size: clamp(1.1rem, 2.08vh, 1.43rem); }
+  .fv__mark-en { max-width: 26ch; font-size: clamp(.7rem, 1.7vw, .82rem); }
 }
 
 /* left-panel build note — vertical JP copy hinting the retreat under construction */
