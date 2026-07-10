@@ -138,23 +138,13 @@
 /* hover layer — the customer-first lifestyle close-up, crossfades in on hover */
 .pinned__img--hover { opacity: 0; transform: scale(1.05); transition: opacity var(--dur-slow) var(--ease-fv), transform 7s var(--ease-fv); }
 .pinned__slide:hover .pinned__img--hover { opacity: 1; transform: scale(1); }
-/* hint chip — fades out once the active slide is hovered */
-.pinned__hint {
-  position: absolute; left: var(--space-4); bottom: var(--space-4); z-index: 3;
-  padding: var(--space-2) var(--space-4); border-radius: 100px;
-  background: rgba(20,15,11,.42); backdrop-filter: blur(6px);
-  color: var(--white); font-size: var(--step-overline); letter-spacing: var(--track-overline);
-  text-transform: uppercase; transition: opacity var(--dur) var(--ease);
-}
-.pinned__media:hover .pinned__hint { opacity: 0; }
-@media (hover: none) { .pinned__hint { display: none; } }  /* touch: no hover affordance */
 .pinned__media .vtext {       /* vertical caption over the pinned image */
   position: absolute; top: var(--space-6); right: var(--space-4); z-index: 2;
   color: var(--white); font-size: var(--step-overline); letter-spacing: .3em;
   text-transform: uppercase; text-shadow: 0 1px 12px rgba(20,15,11,.6);
 }
 .pinned__list { display: flex; flex-direction: column; }
-.pinned__item { padding-block: clamp(var(--space-16), 14vh, var(--space-32)); border-top: 1px solid var(--gold); }
+.pinned__item { padding-block: clamp(var(--space-12), 10vh, var(--space-16)); border-top: 1px solid var(--gold); }
 .pinned__item:first-child { border-top: 0; padding-top: 0; }
 .pinned__item .price { margin-top: var(--space-5); }
 .pinned__item .buy__row { margin-top: var(--space-6); }
@@ -184,10 +174,13 @@
 .stagger.is-visible > *:nth-child(4) { transition-delay: 540ms; }
 .stagger.is-visible > *:nth-child(5) { transition-delay: 720ms; }
 
-/* section eyebrow with vertical label down the left margin */
+/* section label — true vertical text (Yamamotoyama pattern), centred in the
+   left gutter so it can never collide with the section heading */
 .vlabel {
-  position: absolute; left: var(--gutter); top: var(--section-y); z-index: 3;
+  position: absolute; left: calc(var(--gutter) / 2); top: var(--section-y); z-index: 3;
+  transform: translateX(-50%);
   display: none;
+  writing-mode: vertical-rl; text-orientation: mixed;
   color: var(--ink-soft); font-size: var(--step-overline);
   letter-spacing: .32em; text-transform: uppercase;
   padding-top: var(--space-6); border-top: 1px solid var(--gold);
@@ -229,6 +222,34 @@
 .news-item:hover::after { transform: translateX(.35rem); color: var(--matcha-deep); }
 @media (max-width: 640px) { .news-item { grid-template-columns: 1fr auto; gap: var(--space-2) var(--space-6); }
   .news-item time { grid-column: 1 / -1; } }
+
+/* ============================================================
+   MANIFESTO — centred vertical-text block floating in whitespace
+   (the reference's signature intro device: short vertical JP lines
+   read right-to-left, with one quiet EN caption beneath)
+   ============================================================ */
+.manifesto { text-align: center; }
+.manifesto__jp {
+  display: flex; flex-direction: row-reverse; justify-content: center;
+  gap: clamp(var(--space-6), 4vw, var(--space-12));
+  margin: 0;
+}
+.manifesto__jp span {
+  writing-mode: vertical-rl; text-orientation: mixed;
+  font-family: var(--font-jp-head); font-weight: 400;
+  font-size: clamp(1.05rem, 1.6vw, 1.35rem); line-height: 1;
+  letter-spacing: .3em; color: var(--text);
+  min-height: 11em;
+}
+.manifesto__en {
+  max-width: 44ch; margin: var(--space-12) auto 0;
+  font-size: var(--step-small); line-height: 1.9; letter-spacing: .02em;
+  color: var(--text-soft); text-wrap: balance;
+}
+.manifesto::before {
+  content: ""; display: block; width: 1px; height: var(--space-12);
+  margin: 0 auto var(--space-12); background: var(--gold);
+}
 
 /* ============================================================
    reduced motion — kill Ken-Burns, reveals show immediately
