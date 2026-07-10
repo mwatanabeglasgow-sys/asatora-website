@@ -198,7 +198,7 @@
   transition: transform 1.1s var(--ease-fv), filter .6s var(--ease); }
 .report-card:hover .report-card__frame img { transform: scale(1.05); filter: brightness(1.05); }
 .report-card__frame::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 45%, rgba(20,15,11,.6)); }
-.report-card__title { position: absolute; left: var(--space-4); bottom: var(--space-4); z-index: 2; color: var(--white); height: 7rem; font-size: var(--step-h3); }
+.report-card__title { position: absolute; left: var(--space-4); right: var(--space-4); bottom: var(--space-4); z-index: 2; color: var(--white); font-size: var(--step-h3); line-height: var(--leading-tight); }
 .report-card__meta { margin-top: var(--space-3); display: flex; justify-content: space-between; color: var(--text-soft); font-size: var(--step-small); letter-spacing: .08em; text-transform: uppercase; }
 .reports__foot { display: flex; align-items: center; justify-content: space-between; gap: var(--space-6); margin-top: var(--space-12); }
 .swiper-nav { display: inline-flex; gap: var(--space-3); }
