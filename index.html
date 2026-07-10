@@ -23,9 +23,9 @@
   <link rel="preload" as="image" href="assets/hero-tin-2.jpg">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-  <link rel="stylesheet" href="assets/tokens.css?v=5">
-  <link rel="stylesheet" href="assets/base.css?v=5">
-  <link rel="stylesheet" href="assets/editorial.css?v=5">
+  <link rel="stylesheet" href="assets/tokens.css?v=6">
+  <link rel="stylesheet" href="assets/base.css?v=6">
+  <link rel="stylesheet" href="assets/editorial.css?v=6">
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"Organization","name":"Asatora","url":"/","description":"Single-origin matcha from Shibushi, Kagoshima."}
   </script>
@@ -36,7 +36,7 @@
 
   <!-- header -->
   <header class="header header--over-hero" data-header>
-    <nav class="header__nav" aria-label="Primary"><a href="#shop">Shop</a><a href="#provenance">Story</a><a href="#retreat">Retreat</a></nav>
+    <nav class="header__nav" aria-label="Primary"><a href="#shop">Shop</a><a href="#provenance">Story</a><a href="#retreat">Retreat</a><a href="#reserve">Reserve</a></nav>
     <button class="menu-btn" type="button" data-menu-open style="justify-self:start" aria-label="Menu" aria-expanded="false" aria-controls="mobile-nav"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
     <a class="header__logo" href="#" aria-label="Asatora — Japanese matcha"><img class="header__wordmark" src="assets/logo-wordmark-en.png" alt="Asatora" width="1664" height="734"></a>
     <div class="header__actions">
@@ -44,7 +44,7 @@
       <button class="cart-toggle" type="button" data-cart-open aria-label="Cart"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 5h2l1.5 11.5a1.5 1.5 0 0 0 1.5 1.3h8a1.5 1.5 0 0 0 1.5-1.2L20 8H6"/><circle cx="9" cy="21" r="1"/><circle cx="17" cy="21" r="1"/></svg><span class="cart-count" data-cart-count data-count="0">0</span></button>
     </div>
   </header>
-  <nav class="mobile-nav" id="mobile-nav" data-mobile-nav hidden><a href="#shop">Shop</a><a href="#provenance">Story</a><a href="#retreat">Retreat</a><div class="mobile-nav__lang"><button aria-current="true">EN</button><span aria-hidden="true">·</span><button>JA</button></div></nav>
+  <nav class="mobile-nav" id="mobile-nav" data-mobile-nav hidden><a href="#shop">Shop</a><a href="#provenance">Story</a><a href="#retreat">Retreat</a><a href="#reserve">Reserve</a><div class="mobile-nav__lang"><button aria-current="true">EN</button><span aria-hidden="true">·</span><button>JA</button></div></nav>
 
   <main id="main">
     <!-- 1 · FIRST VIEW — split Ken-Burns hero, vertical seam mark (reference FV pattern) -->
@@ -187,7 +187,121 @@
       <div class="container band__inner stack stagger">
         <h2 class="display">Eight guests. One mountain.<br>Seven days.</h2>
         <p class="lede" style="max-width:34ch">A practice where the matcha grows. Opening soon.</p>
-        <a class="btn btn--primary" href="#letter" data-notify>Join the waitlist</a>
+        <a class="btn btn--primary" href="#reserve">Reserve your stay</a>
+      </div>
+    </section>
+
+    <!-- 5b · RESERVE — pre-booking tiers + what ships ahead + request form -->
+    <section class="section" id="reserve" style="position:relative">
+      <span class="vlabel" aria-hidden="true">予約 · Reserve</span>
+      <div class="container">
+        <div class="stagger" style="max-width:52ch">
+          <h2>Reserve your stay</h2>
+          <p class="lede" style="margin-top:var(--space-4)">Eight seats per cohort, held in the order requests arrive. Every reservation ships the mountain to your door first — you arrive already knowing the tea.</p>
+        </div>
+
+        <!-- what arrives before you do — product carousel -->
+        <div class="swiper" data-reserve-carousel style="margin-top:var(--space-12)">
+          <div class="swiper-wrapper">
+            <figure class="swiper-slide ship-card">
+              <div class="ship-card__frame ship-card__frame--asatora"><img src="assets/hero-tin-2.jpg" alt="Asatora matcha tin, 30g first harvest" loading="lazy"></div>
+              <figcaption class="ship-card__meta"><span>朝虎 抹茶 · 30g</span><span>ships ahead</span></figcaption>
+            </figure>
+            <figure class="swiper-slide ship-card">
+              <div class="ship-card__frame"><img src="assets/fukucha-item-01.png" alt="Fukucha sencha pouches, 45g and 100g, from Marumasa Fukuchaen" loading="lazy"></div>
+              <figcaption class="ship-card__meta"><span>福茶 煎茶 · 45g / 100g</span><span>ships ahead</span></figcaption>
+            </figure>
+            <figure class="swiper-slide ship-card">
+              <div class="ship-card__frame"><img src="assets/fukucha-item-03.png" alt="Fukucha genmaicha pouch, 200g, from Marumasa Fukuchaen" loading="lazy"></div>
+              <figcaption class="ship-card__meta"><span>福茶 玄米茶 · 200g</span><span>ships ahead</span></figcaption>
+            </figure>
+            <figure class="swiper-slide ship-card">
+              <div class="ship-card__frame"><img src="assets/fukucha-item-02.png" alt="Fukucha hojicha pouch from Marumasa Fukuchaen" loading="lazy"></div>
+              <figcaption class="ship-card__meta"><span>福茶 ほうじ茶</span><span>seasonal</span></figcaption>
+            </figure>
+          </div>
+        </div>
+        <p class="small" style="margin-top:var(--space-4);color:var(--text-soft)">Teas grown by 正福茶園, the family garden behind Asatora — sent the week your reservation is confirmed.</p>
+
+        <!-- tiers -->
+        <div class="tiers" style="margin-top:var(--space-16)">
+          <article class="tier">
+            <p class="tier__jp" lang="ja">一日</p>
+            <h3 class="tier__name">The Day</h3>
+            <p class="tier__price"><span class="tier__amount">¥15,000</span><span class="tier__unit">/ person</span></p>
+            <p class="tier__desc">One morning on the mountain — practice, the mill room at work, matcha served where it was ground.</p>
+            <ul class="tier__features" role="list">
+              <li>Morning practice in the training hall</li>
+              <li>The glass-walled stone-mill room, running</li>
+              <li>Matcha service and lunch from the dining hall</li>
+              <li><strong>Ships ahead:</strong> 福茶 煎茶 45g</li>
+            </ul>
+            <button class="btn tier__cta" type="button" data-tier-select="The Day">Request a day</button>
+          </article>
+
+          <article class="tier tier--highlight">
+            <p class="tier__badge">Founding cohort · 8 seats</p>
+            <p class="tier__jp" lang="ja">七日</p>
+            <h3 class="tier__name">The Seven Days</h3>
+            <p class="tier__price"><span class="tier__amount">¥600,000</span><span class="tier__unit">/ person · 7 days</span></p>
+            <p class="tier__desc">A full week where the matcha grows. One solo lodge, all meals, the whole practice — one of eight.</p>
+            <ul class="tier__features" role="list">
+              <li>Solo container lodge, seven nights</li>
+              <li>Every meal from the dining hall</li>
+              <li>Daily practice, milling at first light</li>
+              <li>Your name in the founding register</li>
+              <li><strong>Ships ahead:</strong> 朝虎 抹茶 30g + 福茶 煎茶 100g + 玄米茶 200g</li>
+            </ul>
+            <button class="btn btn--primary tier__cta" type="button" data-tier-select="The Seven Days">Reserve a seat</button>
+          </article>
+
+          <article class="tier">
+            <p class="tier__jp" lang="ja">山ごと</p>
+            <h3 class="tier__name">The Whole Mountain</h3>
+            <p class="tier__price"><span class="tier__amount">¥4,800,000</span><span class="tier__unit">/ 8 guests · 7 days</span></p>
+            <p class="tier__desc">All eight lodges, one cohort of your own. The mountain, the mills and the week are yours.</p>
+            <ul class="tier__features" role="list">
+              <li>Every lodge, every seat — private</li>
+              <li>The full seven-day practice, your people only</li>
+              <li>Milling, dining and training halls to yourselves</li>
+              <li><strong>Ships ahead:</strong> eight 朝虎 tins + the full 福茶 library, one set per guest</li>
+            </ul>
+            <button class="btn tier__cta" type="button" data-tier-select="The Whole Mountain">Request the mountain</button>
+          </article>
+        </div>
+
+        <!-- reservation request -->
+        <div class="reserve-note reveal" id="reserve-form">
+          <h3 style="font-size:var(--step-h3);font-weight:400">Request your reservation</h3>
+          <p class="small" style="color:var(--text-soft);max-width:52ch;margin-top:var(--space-3)">We confirm every stay by hand. After you write, we reply within a week with available cohort dates and a deposit invoice — 20% holds your seat, the balance is due 60 days before you arrive. No payment is taken on this site. Prices are what they are; we don't discount.</p>
+          <form data-reserve novalidate>
+            <div class="reserve-grid">
+              <div class="field"><label for="rv-tier">Stay</label>
+                <select class="input" id="rv-tier">
+                  <option>The Day</option>
+                  <option selected>The Seven Days</option>
+                  <option>The Whole Mountain</option>
+                </select>
+              </div>
+              <div class="field"><label for="rv-guests">Guests</label>
+                <select class="input" id="rv-guests">
+                  <option>1</option><option>2</option><option>3</option><option>4</option>
+                  <option>5</option><option>6</option><option>7</option><option>8</option>
+                </select>
+              </div>
+              <div class="field"><label for="rv-month">Preferred month</label>
+                <select class="input" id="rv-month">
+                  <option>2027 — first cohorts</option><option>Spring 2027</option><option>Summer 2027</option>
+                  <option>Autumn 2027</option><option>Flexible</option>
+                </select>
+              </div>
+              <div class="field"><label for="rv-name">Your name</label><input class="input" type="text" id="rv-name" autocomplete="name"></div>
+              <div class="field reserve-grid__wide"><label for="rv-email">Your email</label><input class="input" type="email" id="rv-email" autocomplete="email"></div>
+            </div>
+            <button type="submit" class="btn btn--primary" style="margin-top:var(--space-6)">Request reservation</button>
+            <p class="letter__msg" data-reserve-msg role="status" aria-live="polite"></p>
+          </form>
+        </div>
       </div>
     </section>
 
@@ -230,7 +344,7 @@
           <p class="small" style="max-width:32ch;margin-top:1rem;opacity:.8">Single-origin matcha from 正福茶園, Shibushi, Kagoshima.</p>
           <p class="small" style="margin-top:1rem;opacity:.6;letter-spacing:.18em;text-transform:uppercase">朝虎 · Japanese Matcha</p>
         </div>
-        <nav aria-label="Explore"><h4>Explore</h4><ul role="list" class="stack" style="--space-4:.5rem"><li><a href="#shop">Shop</a></li><li><a href="#provenance">Story</a></li><li><a href="#journal">Field reports</a></li><li><a href="#retreat">Retreat</a></li></ul></nav>
+        <nav aria-label="Explore"><h4>Explore</h4><ul role="list" class="stack" style="--space-4:.5rem"><li><a href="#shop">Shop</a></li><li><a href="#provenance">Story</a></li><li><a href="#journal">Field reports</a></li><li><a href="#retreat">Retreat</a></li><li><a href="#reserve">Reserve a stay</a></li></ul></nav>
         <nav aria-label="Keep in touch"><h4>Keep in touch</h4><ul role="list" class="stack" style="--space-4:.5rem"><li><a href="#letter">The Mountain Letter</a></li><li><a href="#letter" data-notify>Join the waitlist</a></li></ul></nav>
       </div>
       <div class="footer__bottom"><span>© 2026 Asatora. All rights reserved.</span><span>Shipped from Japan</span></div>
@@ -290,6 +404,11 @@
         function syncNav(){ if(pv)pv.disabled=sw.isBeginning; if(nx)nx.disabled=sw.isEnd; }
         if(pv)pv.addEventListener("click",function(){sw.slidePrev();}); if(nx)nx.addEventListener("click",function(){sw.slideNext();});
         sw.on("slideChange",syncNav); syncNav();
+        // Reserve — ships-ahead product carousel
+        new Swiper("[data-reserve-carousel]", {
+          slidesPerView: 1.3, spaceBetween: 16, grabCursor: true, speed: 700,
+          breakpoints: { 640:{slidesPerView:2.3,spaceBetween:20}, 1024:{slidesPerView:3.4,spaceBetween:24} }
+        });
       }
     });
     function openD(){var d=document.querySelector("[data-cart-drawer]"),o=document.querySelector("[data-overlay]");d.classList.add("is-open");o.classList.add("is-open");document.body.style.overflow="hidden";}
@@ -332,6 +451,37 @@
         msg.className="letter__msg is-ok";
         msg.textContent="You're on the list. We'll write from the mountain when there's news.";
         form.reset();
+      });
+    })();
+    // Reserve — tier CTAs prefill the request form; submit composes the reservation email
+    (function(){
+      var form=document.querySelector("[data-reserve]");
+      if(!form) return;
+      var tierSel=document.getElementById("rv-tier"), guests=document.getElementById("rv-guests"),
+          month=document.getElementById("rv-month"), name=document.getElementById("rv-name"),
+          email=document.getElementById("rv-email"), msg=document.querySelector("[data-reserve-msg]");
+      var target=document.getElementById("reserve-form");
+      document.querySelectorAll("[data-tier-select]").forEach(function(b){
+        b.addEventListener("click",function(){
+          tierSel.value=b.getAttribute("data-tier-select");
+          if(window.lenis&&target) window.lenis.scrollTo(target,{offset:-90});
+          else if(target) target.scrollIntoView({behavior:R?"auto":"smooth",block:"start"});
+          setTimeout(function(){ try{ name.focus({preventScroll:true}); }catch(_){ name.focus(); } }, R?0:700);
+        });
+      });
+      var validEmail=function(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); };
+      form.addEventListener("submit",function(e){
+        e.preventDefault();
+        var n=name.value.trim(), em=email.value.trim();
+        if(!n){ name.setAttribute("aria-invalid","true"); name.focus(); msg.className="letter__msg is-error"; msg.textContent="Please tell us your name."; return; }
+        name.removeAttribute("aria-invalid");
+        if(!validEmail(em)){ email.setAttribute("aria-invalid","true"); email.focus(); msg.className="letter__msg is-error"; msg.textContent="That email address needs an @ and a domain. Try: name@example.com"; return; }
+        email.removeAttribute("aria-invalid");
+        var subject="Reservation request — "+tierSel.value;
+        var body="Stay: "+tierSel.value+"\nGuests: "+guests.value+"\nPreferred month: "+month.value+"\nName: "+n+"\nEmail: "+em+"\n\nSent from asatora.shop";
+        location.href="mailto:reserve@asatora.shop?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(body);
+        msg.className="letter__msg is-ok";
+        msg.textContent="Your mail app has opened with the request — send it and we'll reply within a week with cohort dates and the deposit invoice.";
       });
     })();
   </script>
