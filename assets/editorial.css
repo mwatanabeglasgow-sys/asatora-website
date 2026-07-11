@@ -322,6 +322,68 @@
 @media (min-width: 720px) { .reserve-grid { grid-template-columns: repeat(3, 1fr); } .reserve-grid__wide { grid-column: span 2; } }
 .reserve-grid label { font-size: var(--step-overline); letter-spacing: var(--track-overline); text-transform: uppercase; color: var(--text-soft); }
 
+/* reserve: chooser + calendar columns */
+.reserve-cols { display: grid; gap: var(--space-8); margin-top: var(--space-8); }
+@media (min-width: 900px) { .reserve-cols { grid-template-columns: 1fr auto; align-items: start; } }
+
+/* ships-ahead chooser */
+.chooser { border: 1px solid var(--kraft); border-radius: var(--radius); padding: var(--space-6); }
+.chooser__legend { padding-inline: var(--space-2); font-size: var(--step-overline); letter-spacing: var(--track-overline); text-transform: uppercase; color: var(--text-soft); }
+.chooser__hint { color: var(--text-soft); }
+.chooser__fixed { margin-top: var(--space-4); display: grid; gap: var(--space-2); }
+.chooser__fixed li { position: relative; padding-left: 1.6rem; font-size: var(--step-small); color: var(--text); }
+.chooser__fixed li::before {
+  content: ""; position: absolute; left: 0; top: .38em; width: .85em; height: .5em;
+  border-left: 1.5px solid var(--gold); border-bottom: 1.5px solid var(--gold); transform: rotate(-45deg);
+}
+.chooser__options { margin-top: var(--space-4); display: grid; gap: var(--space-3); }
+.chooser__opt { display: flex; align-items: center; gap: var(--space-3); font-size: var(--step-small); cursor: pointer; }
+.chooser__opt em { color: var(--text-soft); font-style: normal; }
+.chooser__opt input {
+  appearance: none; width: 1.05rem; height: 1.05rem; margin: 0; flex: none;
+  border: 1px solid var(--kraft-deep); border-radius: 2px; background: var(--white);
+  display: inline-grid; place-content: center; cursor: pointer;
+  transition: background-color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
+}
+.chooser__opt input::before {
+  content: ""; width: .6em; height: .35em; margin-top: -0.1em;
+  border-left: 2px solid var(--white); border-bottom: 2px solid var(--white);
+  transform: rotate(-45deg) scale(0); transition: transform var(--dur-fast) var(--ease);
+}
+.chooser__opt input:checked { background: var(--matcha); border-color: var(--matcha); }
+.chooser__opt input:checked::before { transform: rotate(-45deg) scale(1); }
+.chooser__opt input:focus-visible { outline: 2px solid var(--matcha); outline-offset: 2px; }
+.chooser__opt input:disabled { opacity: .35; cursor: not-allowed; }
+.chooser__opt:has(input:disabled) { color: var(--text-soft); cursor: not-allowed; }
+.chooser--locked .chooser__options { opacity: .45; }
+
+/* inline calendar — DayPicker reference rendered in Asatora tokens */
+.cal { margin-top: var(--space-2); width: max-content; padding: var(--space-4); border: 1px solid var(--kraft); border-radius: var(--radius); background: var(--white); }
+.cal__caption { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); margin-bottom: var(--space-3); }
+.cal__title { font-family: var(--font-display); font-size: var(--step-body); }
+.cal__nav {
+  width: 2.25rem; height: 2.25rem; display: inline-flex; align-items: center; justify-content: center;
+  border-radius: var(--radius); color: var(--ink-soft);
+  transition: color var(--dur-fast) var(--ease), background-color var(--dur-fast) var(--ease);
+}
+.cal__nav:hover { color: var(--ink); background: var(--paper); }
+.cal__nav:disabled { opacity: .3; cursor: not-allowed; }
+.cal__weekdays, .cal__grid { display: grid; grid-template-columns: repeat(7, 2.25rem); }
+.cal__weekdays span { height: 2.25rem; display: grid; place-content: center; font-size: var(--step-overline); letter-spacing: .1em; color: var(--text-soft); }
+.cal__grid { grid-auto-rows: 2.25rem; }
+.cal__day {
+  position: relative; display: grid; place-content: center; font-size: var(--step-small);
+  color: var(--text); border-radius: var(--radius); cursor: pointer;
+  transition: background-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+}
+.cal__day:hover { background: var(--paper-deep); }
+.cal__day:focus-visible { outline: 2px solid var(--matcha); outline-offset: 2px; z-index: 1; }
+.cal__day.is-selected { background: var(--matcha-deep); color: var(--white); }
+.cal__day.range-start { border-start-end-radius: 0; border-end-end-radius: 0; }
+.cal__day.range-end { border-start-start-radius: 0; border-end-start-radius: 0; }
+.cal__day.range-middle { background: var(--paper-deep); border-radius: 0; }
+.cal__picked { margin-top: var(--space-3); color: var(--text-soft); max-width: 19rem; }
+
 /* ============================================================
    reduced motion — kill Ken-Burns, reveals show immediately
    ============================================================ */

@@ -23,9 +23,9 @@
   <link rel="preload" as="image" href="assets/hero-tin-2.jpg">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-  <link rel="stylesheet" href="assets/tokens.css?v=6">
-  <link rel="stylesheet" href="assets/base.css?v=6">
-  <link rel="stylesheet" href="assets/editorial.css?v=6">
+  <link rel="stylesheet" href="assets/tokens.css?v=7">
+  <link rel="stylesheet" href="assets/base.css?v=7">
+  <link rel="stylesheet" href="assets/editorial.css?v=7">
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"Organization","name":"Asatora","url":"/","description":"Single-origin matcha from Shibushi, Kagoshima."}
   </script>
@@ -234,7 +234,7 @@
               <li>Morning practice in the training hall</li>
               <li>The glass-walled stone-mill room, running</li>
               <li>Matcha service and lunch from the dining hall</li>
-              <li><strong>Ships ahead:</strong> 福茶 煎茶 45g</li>
+              <li><strong>Ships ahead:</strong> your choice of one 福茶 tea</li>
             </ul>
             <button class="btn tier__cta" type="button" data-tier-select="The Day">Request a day</button>
           </article>
@@ -250,7 +250,7 @@
               <li>Every meal from the dining hall</li>
               <li>Daily practice, milling at first light</li>
               <li>Your name in the founding register</li>
-              <li><strong>Ships ahead:</strong> 朝虎 抹茶 30g + 福茶 煎茶 100g + 玄米茶 200g</li>
+              <li><strong>Ships ahead:</strong> 朝虎 抹茶 30g + your choice of two 福茶 teas</li>
             </ul>
             <button class="btn btn--primary tier__cta" type="button" data-tier-select="The Seven Days">Reserve a seat</button>
           </article>
@@ -289,14 +289,38 @@
                   <option>5</option><option>6</option><option>7</option><option>8</option>
                 </select>
               </div>
-              <div class="field"><label for="rv-month">Preferred month</label>
-                <select class="input" id="rv-month">
-                  <option>2027 — first cohorts</option><option>Spring 2027</option><option>Summer 2027</option>
-                  <option>Autumn 2027</option><option>Flexible</option>
-                </select>
-              </div>
               <div class="field"><label for="rv-name">Your name</label><input class="input" type="text" id="rv-name" autocomplete="name"></div>
-              <div class="field reserve-grid__wide"><label for="rv-email">Your email</label><input class="input" type="email" id="rv-email" autocomplete="email"></div>
+              <div class="field reserve-grid__wide" style="grid-column:1/-1"><label for="rv-email">Your email</label><input class="input" type="email" id="rv-email" autocomplete="email"></div>
+            </div>
+
+            <div class="reserve-cols">
+              <!-- ships-ahead chooser — allowance follows the chosen tier -->
+              <fieldset class="chooser" data-chooser>
+                <legend class="chooser__legend">What ships ahead</legend>
+                <p class="small chooser__hint" data-chooser-hint></p>
+                <ul class="chooser__fixed" data-chooser-fixed role="list"></ul>
+                <div class="chooser__options" data-chooser-options>
+                  <label class="chooser__opt"><input type="checkbox" value="福茶 煎茶 45g"><span>福茶 煎茶 · 45g</span></label>
+                  <label class="chooser__opt"><input type="checkbox" value="福茶 煎茶 100g"><span>福茶 煎茶 · 100g</span></label>
+                  <label class="chooser__opt"><input type="checkbox" value="福茶 玄米茶 200g"><span>福茶 玄米茶 · 200g</span></label>
+                  <label class="chooser__opt"><input type="checkbox" value="福茶 ほうじ茶"><span>福茶 ほうじ茶 <em>(seasonal)</em></span></label>
+                </div>
+              </fieldset>
+
+              <!-- preferred start date — inline calendar (7-day tiers paint the week) -->
+              <div class="field">
+                <label id="rv-cal-label">Preferred start date <span style="text-transform:none;letter-spacing:0">— optional; leave empty for flexible</span></label>
+                <div class="cal" data-cal role="group" aria-labelledby="rv-cal-label">
+                  <div class="cal__caption">
+                    <button type="button" class="cal__nav" data-cal-prev aria-label="Previous month"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 5l-7 7 7 7"/></svg></button>
+                    <span class="cal__title" data-cal-title aria-live="polite"></span>
+                    <button type="button" class="cal__nav" data-cal-next aria-label="Next month"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg></button>
+                  </div>
+                  <div class="cal__weekdays" aria-hidden="true"></div>
+                  <div class="cal__grid" data-cal-grid></div>
+                  <p class="small cal__picked" data-cal-picked aria-live="polite">No date chosen — we'll propose cohort weeks.</p>
+                </div>
+              </div>
             </div>
             <button type="submit" class="btn btn--primary" style="margin-top:var(--space-6)">Request reservation</button>
             <p class="letter__msg" data-reserve-msg role="status" aria-live="polite"></p>
@@ -458,27 +482,114 @@
       var form=document.querySelector("[data-reserve]");
       if(!form) return;
       var tierSel=document.getElementById("rv-tier"), guests=document.getElementById("rv-guests"),
-          month=document.getElementById("rv-month"), name=document.getElementById("rv-name"),
-          email=document.getElementById("rv-email"), msg=document.querySelector("[data-reserve-msg]");
+          name=document.getElementById("rv-name"), email=document.getElementById("rv-email"),
+          msg=document.querySelector("[data-reserve-msg]");
       var target=document.getElementById("reserve-form");
+
+      // ---- tier rules: what's fixed, how many teas may be chosen ----
+      var TIERS={
+        "The Day":            { fixed:[], choose:1, span:1 },
+        "The Seven Days":     { fixed:["朝虎 抹茶 30g"], choose:2, span:7 },
+        "The Whole Mountain": { fixed:["朝虎 抹茶 30g × 8","福茶 full library × 8 — every tea, one set per guest"], choose:0, span:7 }
+      };
+
+      // ---- ships-ahead chooser ----
+      var chooser=document.querySelector("[data-chooser]"),
+          chooserHint=document.querySelector("[data-chooser-hint]"),
+          chooserFixed=document.querySelector("[data-chooser-fixed]"),
+          boxes=Array.prototype.slice.call(document.querySelectorAll("[data-chooser-options] input"));
+      function tierRule(){ return TIERS[tierSel.value]||TIERS["The Seven Days"]; }
+      function syncChooser(){
+        var r=tierRule();
+        chooserFixed.innerHTML=r.fixed.map(function(f){ return "<li>"+f+"</li>"; }).join("");
+        chooserFixed.hidden=!r.fixed.length;
+        var picked=boxes.filter(function(b){ return b.checked; });
+        picked.slice(r.choose).forEach(function(b){ b.checked=false; });
+        var atMax=boxes.filter(function(b){ return b.checked; }).length>=r.choose;
+        boxes.forEach(function(b){ b.disabled=r.choose===0||(atMax&&!b.checked); });
+        chooser.classList.toggle("chooser--locked", r.choose===0);
+        chooserHint.textContent = r.choose===0
+          ? "Everything ships — the full library is included for every guest."
+          : "Choose "+(r.choose===1?"one tea":r.choose+" teas")+" to ship the week your seat is confirmed.";
+      }
+      boxes.forEach(function(b){ b.addEventListener("change",syncChooser); });
+
+      // ---- inline calendar (adapted from the DayPicker reference: caption/nav/
+      //      weekday row/day grid + range-start/middle/end classes) ----
+      var MIN=new Date(2027,0,1), MAX=new Date(2028,11,31);
+      var view=new Date(2027,3,1);           // opens on April 2027 — first harvest
+      var startDate=null;                     // selected start Date or null
+      var grid=document.querySelector("[data-cal-grid]"), title=document.querySelector("[data-cal-title]"),
+          picked=document.querySelector("[data-cal-picked]"), wk=document.querySelector(".cal__weekdays");
+      var MONTHS=["January","February","March","April","May","June","July","August","September","October","November","December"];
+      "SMTWTFS".split("").forEach(function(d){ var s=document.createElement("span"); s.textContent=d; wk.appendChild(s); });
+      function sameDay(a,b){ return a&&b&&a.getFullYear()===b.getFullYear()&&a.getMonth()===b.getMonth()&&a.getDate()===b.getDate(); }
+      function fmt(d){ return d.getDate()+" "+MONTHS[d.getMonth()]+" "+d.getFullYear(); }
+      function renderCal(){
+        var r=tierRule(), y=view.getFullYear(), m=view.getMonth();
+        title.textContent=MONTHS[m]+" "+y;
+        document.querySelector("[data-cal-prev]").disabled=(y===MIN.getFullYear()&&m===MIN.getMonth());
+        document.querySelector("[data-cal-next]").disabled=(y===MAX.getFullYear()&&m===MAX.getMonth());
+        var end=startDate&&new Date(startDate.getFullYear(),startDate.getMonth(),startDate.getDate()+r.span-1);
+        grid.innerHTML="";
+        var first=new Date(y,m,1), lead=first.getDay(), days=new Date(y,m+1,0).getDate();
+        for(var i=0;i<lead;i++){ grid.appendChild(document.createElement("span")); }
+        for(var d=1;d<=days;d++){
+          (function(d){
+            var date=new Date(y,m,d), b=document.createElement("button");
+            b.type="button"; b.className="cal__day"; b.textContent=d;
+            if(startDate){
+              if(sameDay(date,startDate)) b.classList.add("is-selected","range-start");
+              else if(end&&date>startDate&&date<end) b.classList.add("range-middle");
+              else if(end&&sameDay(date,end)&&r.span>1) b.classList.add("is-selected","range-end");
+            }
+            b.setAttribute("aria-pressed", startDate&&sameDay(date,startDate)?"true":"false");
+            b.setAttribute("aria-label", fmt(date));
+            b.addEventListener("click",function(){
+              startDate=sameDay(date,startDate)?null:date;
+              renderCal();
+            });
+            grid.appendChild(b);
+          })(d);
+        }
+        var rr=tierRule();
+        picked.textContent = startDate
+          ? (rr.span>1 ? fmt(startDate)+" → "+fmt(new Date(startDate.getFullYear(),startDate.getMonth(),startDate.getDate()+rr.span-1))+" · "+rr.span+" days"
+                       : fmt(startDate)+" · one day")
+          : "No date chosen — we'll propose cohort weeks.";
+      }
+      document.querySelector("[data-cal-prev]").addEventListener("click",function(){ view=new Date(view.getFullYear(),view.getMonth()-1,1); renderCal(); });
+      document.querySelector("[data-cal-next]").addEventListener("click",function(){ view=new Date(view.getFullYear(),view.getMonth()+1,1); renderCal(); });
+
+      tierSel.addEventListener("change",function(){ syncChooser(); renderCal(); });
+      syncChooser(); renderCal();
+
       document.querySelectorAll("[data-tier-select]").forEach(function(b){
         b.addEventListener("click",function(){
           tierSel.value=b.getAttribute("data-tier-select");
+          syncChooser(); renderCal();
           if(window.lenis&&target) window.lenis.scrollTo(target,{offset:-90});
           else if(target) target.scrollIntoView({behavior:R?"auto":"smooth",block:"start"});
           setTimeout(function(){ try{ name.focus({preventScroll:true}); }catch(_){ name.focus(); } }, R?0:700);
         });
       });
+
       var validEmail=function(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); };
       form.addEventListener("submit",function(e){
         e.preventDefault();
-        var n=name.value.trim(), em=email.value.trim();
+        var n=name.value.trim(), em=email.value.trim(), r=tierRule();
         if(!n){ name.setAttribute("aria-invalid","true"); name.focus(); msg.className="letter__msg is-error"; msg.textContent="Please tell us your name."; return; }
         name.removeAttribute("aria-invalid");
         if(!validEmail(em)){ email.setAttribute("aria-invalid","true"); email.focus(); msg.className="letter__msg is-error"; msg.textContent="That email address needs an @ and a domain. Try: name@example.com"; return; }
         email.removeAttribute("aria-invalid");
+        var chosen=boxes.filter(function(b){ return b.checked; }).map(function(b){ return b.value; });
+        if(r.choose>0&&chosen.length===0){ msg.className="letter__msg is-error"; msg.textContent="Choose "+(r.choose===1?"a tea":"your teas")+" to ship ahead — it's included with your stay."; return; }
+        var ships=r.fixed.concat(chosen).join(", ")||"—";
+        var when=startDate
+          ? (r.span>1 ? fmt(startDate)+" to "+fmt(new Date(startDate.getFullYear(),startDate.getMonth(),startDate.getDate()+r.span-1)) : fmt(startDate))
+          : "Flexible — propose cohort weeks";
         var subject="Reservation request — "+tierSel.value;
-        var body="Stay: "+tierSel.value+"\nGuests: "+guests.value+"\nPreferred month: "+month.value+"\nName: "+n+"\nEmail: "+em+"\n\nSent from asatora.shop";
+        var body="Stay: "+tierSel.value+"\nGuests: "+guests.value+"\nPreferred dates: "+when+"\nShips ahead: "+ships+"\nName: "+n+"\nEmail: "+em+"\n\nSent from asatora.shop";
         location.href="mailto:reserve@asatora.shop?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(body);
         msg.className="letter__msg is-ok";
         msg.textContent="Your mail app has opened with the request — send it and we'll reply within a week with cohort dates and the deposit invoice.";
